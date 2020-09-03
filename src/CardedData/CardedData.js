@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { getDefaultColumns } from "./sortCustomColumns";
 
 const CardedData = ({ data }) => {
+  const columns = getDefaultColumns(data);
+  console.log("Default Columns", columns);
+
   return (
     <div className="cb-wrapper" data-testid={`cb-wrapper`}>
       {data.map((each, key) => {
@@ -36,6 +40,7 @@ const CardedData = ({ data }) => {
 };
 
 CardedData.propTypes = {
+  // columns: PropTypes.array,
   data: PropTypes.array,
 };
 
