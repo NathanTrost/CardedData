@@ -3,11 +3,7 @@ import CardedData from "./CardedData";
 const { comics } = require("./api/staticMockApi.json").data;
 
 function App() {
-  return (
-    <div className="app-wrapper">
-      <CardedData data={comics} />
-    </div>
-  );
+  return <CardedData data={comics} />;
 }
 
 export default App;
