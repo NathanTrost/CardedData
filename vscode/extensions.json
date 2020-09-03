@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "xabikos.reactsnippets",
+    "EditorConfig.editorconfig",
+    "christian-kohler.path-intellisense"
+  ]
+}
