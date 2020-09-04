@@ -1,13 +1,35 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { getDefaultColumns } from "./sortCustomColumns";
+import { CardedDataProps } from "./propTypes";
+import { getColumns } from "./sortCustomColumns";
 
-const CardedData = ({ data }) => {
-  const columns = getDefaultColumns(data);
-  console.log("Default Columns", columns);
+const CardedData = ({
+  columnOverwrite = false,
+  customColumns,
+  customMethods,
+  data,
+}) => {
+  const columns = getColumns({
+    data,
+    customColumns,
+    customMethods,
+    columnOverwrite,
+  });
 
   return (
     <div className="cb-wrapper" data-testid={`cb-wrapper`}>
+      <div className="cb-header-row">
+        {columns.map((each) => {
+          return (
+            <strong
+              className="cb-header-title"
+              style={{ display: "inline-block", margin: "30px" }}
+            >
+              {each.title}
+            </strong>
+          );
+        })}
+      </div>
+
       {data.map((each, key) => {
         const { publisher, description, title, creators, release_date } = each;
         const itemKey = `${key}-title`;
@@ -39,9 +61,6 @@ const CardedData = ({ data }) => {
   );
 };
 
-CardedData.propTypes = {
-  // columns: PropTypes.array,
-  data: PropTypes.array,
-};
+CardedData.propTypes = CardedDataProps;
 
 export default CardedData;
