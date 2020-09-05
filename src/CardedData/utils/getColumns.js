@@ -1,6 +1,12 @@
 import React from "react";
 
-export const getDefaultColumns = (data) => {
+export const formatKeyForTitle = (string) => {
+  const stringWithUpperCasing =
+    string.charAt(0).toUpperCase() + string.slice(1);
+  return stringWithUpperCasing.replace(/[-_]/g, " ");
+};
+
+export const deriveColumnsFromData = (data) => {
   const flattenedKeys = data.flatMap((each) => Object.keys(each));
   const uniqueKeys = [...new Set(flattenedKeys)];
   return uniqueKeys.map((each, key) => {
@@ -8,8 +14,10 @@ export const getDefaultColumns = (data) => {
       dataIndex: each,
       id: each,
       position: key * 100,
-      title: each,
-      render: (text, record) => <div>{text}</div>,
+      title: formatKeyForTitle(each),
+      render: (text, record) => (
+        <div className={`cd-column-${each}`}>{text}</div>
+      ),
     };
     return column;
   });
@@ -47,7 +55,7 @@ export const getColumns = ({
   commonFunctions,
   columnOverwrite,
 }) => {
-  if (!customColumns) return getDefaultColumns(data);
+  if (!customColumns) return deriveColumnsFromData(data);
   if (columnOverwrite && customColumns) return customColumns(commonFunctions);
 
   const getCustomColumns =
@@ -55,5 +63,5 @@ export const getColumns = ({
       ? customColumns
       : customColumns(commonFunctions);
 
-  return combinedColumns(getDefaultColumns(data), getCustomColumns);
+  return combinedColumns(deriveColumnsFromData(data), getCustomColumns);
 };
