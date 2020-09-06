@@ -3,7 +3,7 @@ import React from "react";
 export const formatKeyForTitle = (string) => {
   const stringWithUpperCasing =
     string.charAt(0).toUpperCase() + string.slice(1);
-  return stringWithUpperCasing.replace(/[-_]/g, " ");
+  return stringWithUpperCasing.replace(/_/g, " ");
 };
 
 export const deriveColumnsFromData = (data) => {
@@ -13,7 +13,7 @@ export const deriveColumnsFromData = (data) => {
     const column = {
       dataIndex: each,
       id: each,
-      position: key * 100,
+      position: (key + 1) * 100,
       title: formatKeyForTitle(each),
       render: (text, record) => (
         <div className={`cd-column-${each}`}>{text}</div>
