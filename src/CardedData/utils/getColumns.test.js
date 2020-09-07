@@ -1,3 +1,4 @@
+import sinon from "sinon";
 import {
   deriveColumnsFromData,
   combinedColumns,
@@ -5,42 +6,42 @@ import {
   getColumns,
 } from "./getColumns";
 
-let testData = [
-  { firstKey: "One", secondKey: "1st", thirdKey: "First value" },
-  { firstKey: "Two", secondKey: "2nd", thirdKey: "Second value" },
-  { firstKey: "Three", secondKey: "3rd", thirdKey: "Third value" },
+const data = [
+  { firstName: "Mark", lastName: "Hamill", age: "25" },
+  { firstName: "Harrison", lastName: "Ford", age: "35" },
+  { firstName: "Carrie", lastName: "Fisher", age: "20" },
 ];
 
-describe("deriveColumnsFromData", () => {
+describe("deriveColumnsFromData: ", () => {
   describe("create id key", () => {
     test("should derive columns from standardized data", () => {
-      const columns = deriveColumnsFromData(testData);
+      const columns = deriveColumnsFromData(data);
       expect(columns).toHaveLength(3);
-      expect(columns[0].id).toBe("firstKey");
-      expect(columns[1].id).toBe("secondKey");
-      expect(columns[2].id).toBe("thirdKey");
+      expect(columns[0].id).toBe("firstName");
+      expect(columns[1].id).toBe("lastName");
+      expect(columns[2].id).toBe("age");
     });
 
     test("should derive columns from data, if keys are inconsistent", () => {
-      const testDataWithOtherKeys = testData.concat({
-        firstKey: "Four",
-        fourthKey: "4",
-        fifthKey: "Fourth Item",
+      const dataWithInconsistentKeys = data.concat({
+        firstName: "Billy Dee",
+        phone: "948-203-0549",
+        address: "Lover Ave",
       });
-      const columns = deriveColumnsFromData(testDataWithOtherKeys);
+      const columns = deriveColumnsFromData(dataWithInconsistentKeys);
 
       expect(columns).toHaveLength(5);
-      expect(columns[0].id).toBe("firstKey");
-      expect(columns[1].id).toBe("secondKey");
-      expect(columns[2].id).toBe("thirdKey");
-      expect(columns[3].id).toBe("fourthKey");
-      expect(columns[4].id).toBe("fifthKey");
+      expect(columns[0].id).toBe("firstName");
+      expect(columns[1].id).toBe("lastName");
+      expect(columns[2].id).toBe("age");
+      expect(columns[3].id).toBe("phone");
+      expect(columns[4].id).toBe("address");
     });
   });
 
   describe("create position key", () => {
     test("should iterate position by 100 for each column item, beginning at 100", () => {
-      const columns = deriveColumnsFromData(testData);
+      const columns = deriveColumnsFromData(data);
 
       expect(columns).toHaveLength(3);
       expect(columns[0].position).toBe(100);
@@ -51,17 +52,17 @@ describe("deriveColumnsFromData", () => {
 
   describe("create title key", () => {
     test("should capitolize keynames", () => {
-      const columns = deriveColumnsFromData(testData);
+      const columns = deriveColumnsFromData(data);
 
       expect(columns).toHaveLength(3);
-      expect(columns[0].title).toBe("FirstKey");
-      expect(columns[1].title).toBe("SecondKey");
-      expect(columns[2].title).toBe("ThirdKey");
+      expect(columns[0].title).toBe("FirstName");
+      expect(columns[1].title).toBe("LastName");
+      expect(columns[2].title).toBe("Age");
     });
 
     test("should replace dashes from keynames", () => {
       const columns = deriveColumnsFromData(
-        testData.concat({ underscored_keyname: "value" })
+        data.concat({ underscored_keyname: "value" })
       );
 
       expect(columns[3].title).toBe("Underscored keyname");
@@ -69,8 +70,8 @@ describe("deriveColumnsFromData", () => {
   });
 });
 
-describe("combinedColumns", () => {
-  const defaultTestColumnArray = [
+describe("combinedColumns: ", () => {
+  const defaultColumnArray = [
     {
       className: "col-firstName",
       dataKey: "firstName",
@@ -104,7 +105,8 @@ describe("combinedColumns", () => {
       title: "Phone",
     },
   ];
-  const customTestColumnAsArray = [
+
+  const customColumnAsArray = [
     {
       id: "firstName",
       position: -1, // Remove firstName with negative position
@@ -129,12 +131,9 @@ describe("combinedColumns", () => {
     },
   ];
 
-  describe("should merge columns", () => {
-    const mergedColumns = combinedColumns(
-      defaultTestColumnArray,
-      customTestColumnAsArray
-    );
-
+  // Centralizing these tests as they should apply
+  // for both array and function overwrites
+  const runGeneralTests = (mergedColumns) => {
     test("should remove firstName column", () => {
       const hasFirstNameCol = mergedColumns.some(
         ({ id }) => id === "firstName"
@@ -168,10 +167,53 @@ describe("combinedColumns", () => {
     test("should change className from `col-lastName` to `col-name`", () => {
       expect(mergedColumns[2].title).toBe("Name");
     });
+  };
+
+  describe("when provided default column array and customColumn array", () => {
+    const mergedColumns = combinedColumns(
+      defaultColumnArray,
+      customColumnAsArray
+    );
+
+    runGeneralTests(mergedColumns);
+  });
+
+  describe("when provided default column array and customColumn function with customMethods", () => {
+    const mockCustomMethods = {};
+    mockCustomMethods.returnStaticText = () => "Mock functional return";
+
+    const customColumnAsFunc = (customMethods) => {
+      const columnArrayFromFunc = customColumnAsArray;
+      columnArrayFromFunc[3].render = () => customMethods.returnStaticText();
+      return columnArrayFromFunc;
+    };
+
+    const mergedColumns = combinedColumns(
+      defaultColumnArray,
+      customColumnAsFunc(mockCustomMethods)
+    );
+
+    runGeneralTests(mergedColumns);
+
+    test("should accept customMethods if provided", () => {
+      const actionColumnMarkup = mergedColumns[2].render();
+      expect(actionColumnMarkup).toBe("Mock functional return");
+    });
   });
 });
 
-describe("formatKeyForTitle", () => {
+// describe("getColumns: ", () => {
+//   test("should run 'deriveColumnsFromData' in not provided a customColumn", () => {
+//     const columns = getColumns({
+//       data,
+//       customColumn: null,
+//       customMethods: null,
+//       overwriteColumns: null,
+//     });
+//   });
+// });
+
+describe("formatKeyForTitle: ", () => {
   test("should capitalize the first letter for the column title", () => {
     const title = formatKeyForTitle("keyName");
     expect(title).toBe("KeyName");
