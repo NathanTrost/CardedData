@@ -4,7 +4,7 @@ import CardedData from "./CardedData";
 const { comics } = require("../api/staticMockApi.json").data;
 const {
   getComicBookColumns,
-} = require("../columnDefinitions/comicBookColumns");
+} = require("../mockColumnDefinitions/comicBookColumns");
 
 export default {
   title: "Example/CardedData",
@@ -18,7 +18,7 @@ export default {
 const Template = (args) => <CardedData {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = { columns: getComicBookColumns(), data: comics };
+Primary.args = { data: comics };
 
 export const Secondary = Template.bind({});
-Secondary.args = { columns: getComicBookColumns(), data: comics };
+Secondary.args = { customColumns: getComicBookColumns(), data: comics };
