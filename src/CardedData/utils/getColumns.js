@@ -52,16 +52,16 @@ export const combinedColumns = (defaultColumns, customColumns) => {
 export const getColumns = ({
   data,
   customColumns,
-  commonFunctions,
+  customMethods,
   columnOverwrite,
 }) => {
   if (!customColumns) return deriveColumnsFromData(data);
-  if (columnOverwrite && customColumns) return customColumns(commonFunctions);
+  if (columnOverwrite && customColumns) return customColumns(customMethods);
 
   const getCustomColumns =
     typeof customColumns === "object"
       ? customColumns
-      : customColumns(commonFunctions);
+      : customColumns(customMethods);
 
   return combinedColumns(deriveColumnsFromData(data), getCustomColumns);
 };

@@ -17,8 +17,18 @@ export default {
 
 const Template = (args) => <CardedData {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = { data: comics };
+export const ColumnsFromData = Template.bind({});
+ColumnsFromData.args = { data: comics };
 
-export const Secondary = Template.bind({});
-Secondary.args = { customColumns: getComicBookColumns(), data: comics };
+export const ColumnsFromCustomConfig = Template.bind({});
+ColumnsFromCustomConfig.args = {
+  customColumns: getComicBookColumns,
+  data: comics,
+};
+
+export const ColumnsWithMergedCustomConfig = Template.bind({});
+ColumnsWithMergedCustomConfig.args = {
+  customColumns: getComicBookColumns,
+  data: comics,
+  columnOverwrite: true,
+};
