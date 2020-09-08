@@ -55,7 +55,7 @@ export const getColumns = ({
   customMethods,
   columnOverwrite,
 }) => {
-  if (!customColumns) return this.deriveColumnsFromData(data);
+  if (!customColumns) return deriveColumnsFromData(data);
   if (columnOverwrite && customColumns) return customColumns(customMethods);
 
   const getCustomColumns =

@@ -1,9 +1,7 @@
-import sinon from "sinon";
 import {
   deriveColumnsFromData,
   combinedColumns,
   formatKeyForTitle,
-  getColumns,
 } from "./getColumns";
 
 const data = [
@@ -201,17 +199,6 @@ describe("combinedColumns: ", () => {
     });
   });
 });
-
-// describe("getColumns: ", () => {
-//   test("should run 'deriveColumnsFromData' in not provided a customColumn", () => {
-//     const columns = getColumns({
-//       data,
-//       customColumn: null,
-//       customMethods: null,
-//       overwriteColumns: null,
-//     });
-//   });
-// });
 
 describe("formatKeyForTitle: ", () => {
   test("should capitalize the first letter for the column title", () => {
