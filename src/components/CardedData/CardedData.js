@@ -1,12 +1,14 @@
 import React from "react";
-import { CardedDataProps } from "./propTypes";
-import { getColumns } from "./utils/getColumns";
+import { CardedDataProps } from "../../types";
+import { getColumns } from "../../utils/getColumns";
+import Header from "../Header";
 
 const CardedData = ({
   columnOverwrite = false,
   customColumns,
   customMethods,
   data,
+  headerDisplayType = "columnTitles",
 }) => {
   const columns = getColumns({
     data,
@@ -17,21 +19,7 @@ const CardedData = ({
 
   return (
     <div className="cb-wrapper" data-testid={`cb-wrapper`}>
-      <div className="cb-header-row">
-        {columns.map((each, index) => {
-          const titleKey = `${index}-${each.id}`;
-          return (
-            <strong
-              className="cb-header-title"
-              data-testid={`cb-header-title`}
-              key={titleKey}
-              style={{ display: "inline-block", margin: "30px" }}
-            >
-              {each.title}
-            </strong>
-          );
-        })}
-      </div>
+      <Header {...{ columns, headerDisplayType }} />
       <div className="cb-items-wrapper" data-testid={`cb-items-wrapper`}>
         {data.map((each, index) => {
           const {
@@ -72,5 +60,4 @@ const CardedData = ({
 };
 
 CardedData.propTypes = CardedDataProps;
-
 export default CardedData;

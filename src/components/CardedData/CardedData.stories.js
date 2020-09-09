@@ -1,10 +1,10 @@
 import React from "react";
 import CardedData from "./CardedData";
 
-const { comics } = require("../api/staticMockApi.json").data;
+const { comics } = require("../../api/staticMockApi.json").data;
 const {
   getComicBookColumns,
-} = require("../mockColumnDefinitions/comicBookColumns");
+} = require("../../mockColumnDefinitions/comicBookColumns");
 
 export default {
   title: "Example/CardedData",

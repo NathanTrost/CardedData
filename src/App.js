@@ -1,5 +1,5 @@
 import React from "react";
-import CardedData from "./CardedData";
+import CardedData from "./components/CardedData";
 const { comics } = require("./api/staticMockApi.json").data;
 
 function App() {
