@@ -18,6 +18,10 @@ export const HeaderProps = {
   headerDisplayType: oneOf(["columnTitles", "filterDropdown", null]),
 };
 
+export const HeaderLabelProps = {
+  children: oneOf([string, node]).isRequired,
+};
+
 export const CardedDataProps = {
   customColumns: oneOfType([
     arrayOf(

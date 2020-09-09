@@ -1,45 +1,26 @@
 import React from "react";
 import { HeaderProps } from "../../types";
+import ColumnLabel from "./ColumnLabel";
+import FilterDropdownItem from "./FilterDropdownItem";
 
 const Header = ({ columns, headerDisplayType = "columnTitles" }) => {
   if (!headerDisplayType) return null;
-  if (headerDisplayType === "columnTitles") {
-    return (
-      <div className="cb-header-row">
-        {columns.map((each, index) => {
-          const titleKey = `${index}-${each.id}`;
+
+  return (
+    <div className="cb-header-row">
+      {columns.map((each, index) => {
+        const titleKey = `${index}-${each.id}`;
+
+        if (headerDisplayType === "columnTitles") {
+          return <ColumnLabel key={titleKey}>{each.title}</ColumnLabel>;
+        } else if (headerDisplayType === "filterDropdown") {
           return (
-            <strong
-              className="cb-header-title"
-              data-testid={`cb-header-title`}
-              key={titleKey}
-              style={{ display: "inline-block", margin: "30px" }}
-            >
-              {each.title}
-            </strong>
+            <FilterDropdownItem key={titleKey}>{each.title}</FilterDropdownItem>
           );
-        })}
-      </div>
-    );
-  } else if (headerDisplayType === "filterDropdown") {
-    return (
-      <div className="cb-header-filter">
-        {columns.map((each, index) => {
-          const titleKey = `${index}-${each.id}`;
-          return (
-            <strong
-              className="cb-header-title"
-              data-testid={`cb-header-title`}
-              key={titleKey}
-              style={{ display: "inline-block", margin: "30px" }}
-            >
-              {each.title}
-            </strong>
-          );
-        })}
-      </div>
-    );
-  }
+        }
+      })}
+    </div>
+  );
 };
 
 Header.propTypes = HeaderProps;
