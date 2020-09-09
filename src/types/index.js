@@ -11,7 +11,7 @@ import {
   shape,
   string,
 } from "prop-types";
-import { allKeysAreFunctions } from "./customDefinitions";
+import { allItemsAreFunctions } from "./customDefinitions";
 
 export const HeaderProps = {
   columnOverwrite: bool,
@@ -31,7 +31,7 @@ export const CardedDataProps = {
     ),
     func, // Function should return the same shape as above, it just accepts function params
   ]),
-  customMethods: objectOf(allKeysAreFunctions),
+  customMethods: objectOf(allItemsAreFunctions),
   data: array.isRequired,
   ...HeaderProps,
 };
