@@ -7,14 +7,14 @@ describe("CardedData", () => {
   const { container } = render(<App />);
 
   test("should display wrapper and all markup in first item", () => {
-    const itemsWrapper = getByTestId(container, "cb-items-wrapper");
+    const itemsWrapper = getByTestId(container, "items-wrapper");
     const firstItem = itemsWrapper.firstChild;
     expect(firstItem).toBeTruthy();
 
-    expect(queryByTestId(firstItem, "cb-title")).toBeTruthy();
-    expect(queryByTestId(firstItem, "cb-publisher")).toBeTruthy();
-    expect(queryByTestId(firstItem, "cb-description")).toBeTruthy();
-    expect(queryByTestId(firstItem, "cb-release_date")).toBeTruthy();
-    expect(queryByTestId(firstItem, "cb-creators")).toBeTruthy();
+    expect(queryByTestId(firstItem, "title")).toBeTruthy();
+    expect(queryByTestId(firstItem, "publisher")).toBeTruthy();
+    expect(queryByTestId(firstItem, "description")).toBeTruthy();
+    expect(queryByTestId(firstItem, "release_date")).toBeTruthy();
+    expect(queryByTestId(firstItem, "creators")).toBeTruthy();
   });
 });

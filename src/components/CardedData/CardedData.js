@@ -8,7 +8,8 @@ const CardedData = ({
   customColumns,
   customMethods,
   data,
-  headerDisplayType = "columnTitles",
+  displayHeader = true,
+  headerType = "columnTitles",
 }) => {
   const columns = getColumns({
     data,
@@ -17,10 +18,15 @@ const CardedData = ({
     columnOverwrite,
   });
 
+  const onFilter = (event) => {
+    console.log(event);
+  };
+
   return (
-    <div className="cb-wrapper" data-testid={`cb-wrapper`}>
-      <Header {...{ columns, headerDisplayType }} />
-      <div className="cb-items-wrapper" data-testid={`cb-items-wrapper`}>
+    <div className="wrapper" data-testid={`wrapper`}>
+      {displayHeader && <Header {...{ columns, onFilter, headerType }} />}
+
+      <div className="items-wrapper" data-testid={`items-wrapper`}>
         {data.map((each, index) => {
           const {
             publisher,
@@ -32,23 +38,23 @@ const CardedData = ({
           const itemKey = `${index}-item-${each.id}`;
           return (
             <div
-              className="cb-item-wrapper"
-              data-testid={`cb-item-wrapper`}
+              className="item-wrapper"
+              data-testid={`item-wrapper`}
               key={itemKey}
             >
-              <span className="cb-title" data-testid={`cb-title`}>
+              <span className="title" data-testid={`title`}>
                 {title}
               </span>
-              <span className="cb-publisher" data-testid={`cb-publisher`}>
+              <span className="publisher" data-testid={`publisher`}>
                 {publisher}
               </span>
-              <span className="cb-description" data-testid={`cb-description`}>
+              <span className="description" data-testid={`description`}>
                 {description}
               </span>
-              <span className="cb-release_date" data-testid={`cb-release_date`}>
+              <span className="release_date" data-testid={`release_date`}>
                 {release_date}
               </span>
-              <span className="cb-creators" data-testid={`cb-creators`}>
+              <span className="creators" data-testid={`creators`}>
                 {creators}
               </span>
             </div>

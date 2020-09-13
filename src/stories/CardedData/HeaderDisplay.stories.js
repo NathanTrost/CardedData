@@ -22,7 +22,7 @@ WithColumnTitles.args = {
   columnOverwrite: true,
   customColumns: getComicBookColumns,
   data: comics,
-  headerDisplayType: "columnTitles",
+  headerType: "columnTitles",
 };
 
 export const WithFilterDropdown = Template.bind({});
@@ -30,7 +30,7 @@ WithFilterDropdown.args = {
   columnOverwrite: true,
   customColumns: getComicBookColumns,
   data: comics,
-  headerDisplayType: "filterDropdown",
+  headerType: "filterDropdown",
 };
 
 export const WithNoHeader = Template.bind({});
@@ -38,5 +38,6 @@ WithNoHeader.args = {
   columnOverwrite: true,
   customColumns: getComicBookColumns,
   data: comics,
-  headerDisplayType: null,
+  displayHeader: false,
+  headerType: "columnTitles",
 };

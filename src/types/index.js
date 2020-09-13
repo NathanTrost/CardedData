@@ -15,11 +15,14 @@ import { allItemsAreFunctions } from "./customDefinitions";
 
 export const HeaderProps = {
   columnOverwrite: bool,
-  headerDisplayType: oneOf(["columnTitles", "filterDropdown", null]),
+  displayHeader: bool,
+  headerType: oneOf(["columnTitles", "filterDropdown"]),
+  onFilter: func,
 };
 
 export const HeaderLabelProps = {
   children: oneOf([string, node]).isRequired,
+  onFilter: func,
 };
 
 export const CardedDataProps = {

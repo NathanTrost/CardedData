@@ -3,21 +3,25 @@ import { HeaderProps } from "../../types";
 import ColumnLabel from "./ColumnLabel";
 import FilterDropdownItem from "./FilterDropdownItem";
 
-const Header = ({ columns, headerDisplayType = "columnTitles" }) => {
-  if (!headerDisplayType) return null;
-
+const Header = ({ columns, headerType, onFilter }) => {
   return (
-    <div className="cb-header-row">
+    <div className="header-row">
       {columns.map((each, index) => {
         const titleKey = `${index}-${each.id}`;
 
-        if (headerDisplayType === "columnTitles") {
-          return <ColumnLabel key={titleKey}>{each.title}</ColumnLabel>;
-        } else if (headerDisplayType === "filterDropdown") {
+        if (headerType === "filterDropdown") {
           return (
-            <FilterDropdownItem key={titleKey}>{each.title}</FilterDropdownItem>
+            <FilterDropdownItem key={titleKey} onFilter={onFilter}>
+              {each.title}
+            </FilterDropdownItem>
           );
         }
+
+        return (
+          <ColumnLabel key={titleKey} onFilter={onFilter}>
+            {each.title}
+          </ColumnLabel>
+        );
       })}
     </div>
   );

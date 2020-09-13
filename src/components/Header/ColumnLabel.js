@@ -1,10 +1,11 @@
 import React from "react";
 import { HeaderLabelProps } from "../../types";
 
-const ColumnLabel = ({ children }) => (
+const ColumnLabel = ({ children, onFilter }) => (
   <strong
-    className="cb-header-title"
-    data-testid={`cb-header-title`}
+    className="header-title"
+    data-testid={`header-title`}
+    onClick={onFilter}
     style={{ display: "inline-block", margin: "30px" }}
   >
     {children}
