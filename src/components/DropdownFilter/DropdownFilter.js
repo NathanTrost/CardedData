@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import { DropdownFilterProps } from "../../types";
 
+import { PrimaryBtn } from "../styled/Buttons";
+
 import "./dropdownFilterStyle.css";
 
 const DropdownFilter = ({ columns, onFilter }) => {
@@ -14,9 +16,9 @@ const DropdownFilter = ({ columns, onFilter }) => {
 
   return (
     <div className={classNames(["dropdown", open && "dropdown--active"])}>
-      <button className="dropdown__trigger" onClick={toggleDropdown}>
+      <PrimaryBtn className="dropdown__trigger" onClick={toggleDropdown}>
         Filter By
-      </button>
+      </PrimaryBtn>
       <div className="dropdown__content">
         <ul>
           {columns.map((each, index) => {
