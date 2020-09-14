@@ -15,7 +15,7 @@ export const PrimaryBtn = styled.button`
   text-transform: capitalize;
   font-size: ${setRem(18)};
   ${setFont.main};
-  padding: ${setRem(12)} ${setRem(30)};
+  padding: ${setRem(8)} ${setRem(18)};
   ${setBorder({ color: setColor.primaryColor })};
   ${setLetterSpacing(3)};
   ${setTransition()};
