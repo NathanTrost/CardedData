@@ -49,7 +49,7 @@ export const setBorder = ({
   radius = "4px",
 } = {}) => {
   return `border: ${width} ${style} ${color};
-    border-radius: ${radius}`;
+    border-radius: ${radius};`;
 };
 
 const sizes = {

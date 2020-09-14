@@ -13,6 +13,7 @@ export const PrimaryBtn = styled.button`
   background: ${setColor.primaryColor};
   color: ${setColor.mainWhite};
   text-transform: capitalize;
+  min-height: 44px,
   font-size: ${setRem(18)};
   ${setFont.main};
   padding: ${setRem(8)} ${setRem(18)};
@@ -40,4 +41,12 @@ export const PrimaryBtn = styled.button`
 
 export const SmallBtn = styled(PrimaryBtn)`
   padding: ${setRem(4)} ${setRem(9)};
+`;
+
+export const DropdownBtn = styled(PrimaryBtn)`
+  width: 140px;
+  height: 44px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
