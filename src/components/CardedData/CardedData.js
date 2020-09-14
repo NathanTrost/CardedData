@@ -2,14 +2,15 @@ import React from "react";
 import { CardedDataProps } from "../../types";
 import { getColumns } from "../../utils/getColumns";
 import Header from "../Header";
+import DropdownFilter from "../DropdownFilter";
 
 const CardedData = ({
   columnOverwrite = false,
   customColumns,
   customMethods,
   data,
-  displayHeader = true,
-  headerType = "columnTitles",
+  displayColumnHeader = true,
+  displayFilterDropdown = false,
 }) => {
   const columns = getColumns({
     data,
@@ -24,10 +25,10 @@ const CardedData = ({
 
   return (
     <div className="wrapper" data-testid={`wrapper`}>
-      {displayHeader && <Header {...{ columns, onFilter, headerType }} />}
-
+      {displayColumnHeader && <Header {...{ columns, onFilter }} />}
+      {displayFilterDropdown && <DropdownFilter {...{ columns, onFilter }} />}
       <div className="items-wrapper" data-testid={`items-wrapper`}>
-        {data.map((each, index) => {
+        {/* {data.map((each, index) => {
           const {
             publisher,
             description,
@@ -59,7 +60,7 @@ const CardedData = ({
               </span>
             </div>
           );
-        })}
+        })} */}
       </div>
     </div>
   );

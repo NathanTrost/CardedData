@@ -1,0 +1,17 @@
+.dropdown {
+  display: inline-block;
+}
+
+.dropdown__content {
+  display: none;
+  position: absolute;
+}
+
+.dropdown--active .dropdown__content {
+  display: block;
+}
+
+a.dropdown__trigger,
+.dropdown__content {
+  cursor: pointer;
+}
