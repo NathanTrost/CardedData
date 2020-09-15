@@ -32,4 +32,9 @@ export const DropdownItem = styled.li`
     background: ${setColor.primaryColor};
     color: ${setColor.accentColor};
   }
+  &:focus {
+    background: ${setColor.primaryColor};
+    color: ${setColor.accentColor};
+  }
+  outline: none;
 `;

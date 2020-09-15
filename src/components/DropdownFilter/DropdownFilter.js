@@ -15,17 +15,17 @@ import {
 } from "../styled/Dropdown";
 
 const DropdownFilter = ({ columns, onFilter }) => {
+  const emptyOption = { id: null, title: "" };
+  const options = [emptyOption].concat(columns);
+  const dropdownRef = useRef();
+
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState("");
-
-  const options = [{ id: null, title: "" }].concat(columns);
-
+  const [selected, setSelected] = useState(emptyOption);
   const [focus, setFocus] = useKeyedNavigation({
     size: options.length,
   });
 
-  const dropdownRef = useRef();
-  const handleBlur = (event) => setOpen(false);
+  const handleBlur = () => setOpen(false);
 
   useOutsideClick({
     condition: open,
@@ -34,6 +34,12 @@ const DropdownFilter = ({ columns, onFilter }) => {
   });
 
   const toggleDropdown = () => setOpen(!open);
+
+  const onSelect = (selected) => {
+    setSelected(selected);
+    onFilter(selected);
+    toggleDropdown();
+  };
 
   return (
     <>
@@ -45,7 +51,7 @@ const DropdownFilter = ({ columns, onFilter }) => {
       >
         <Label id="dropdown__label">Filter By</Label>
         <DropdownBtn
-          alt={selected}
+          alt={selected.title}
           aria-expanded={open}
           aria-haspopup="listbox"
           aria-labelledby="dropdown__label"
@@ -53,7 +59,7 @@ const DropdownFilter = ({ columns, onFilter }) => {
           data-testid="dropdown-trigger"
           onClick={toggleDropdown}
         >
-          {selected || "Select..."}
+          {selected.title || "Select..."}
         </DropdownBtn>
         <DropdownListContainer
           id={`dropdown__content`}
@@ -66,9 +72,9 @@ const DropdownFilter = ({ columns, onFilter }) => {
               return (
                 <DropdownFilterOption
                   focus={focus === index}
+                  item={each}
                   key={titleKey}
-                  title={each.title}
-                  {...{ index, setFocus }}
+                  {...{ index, onSelect, setFocus }}
                 >
                   {each.title}
                 </DropdownFilterOption>

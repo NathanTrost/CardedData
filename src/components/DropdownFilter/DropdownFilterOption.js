@@ -1,33 +1,30 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
 import { DropdownItem } from "../styled/Dropdown";
 
-const DropdownFilterOption = ({ focus, index, setFocus, title }) => {
-  const ref = useRef(null);
+const DropdownFilterOption = ({ focus, index, onSelect, setFocus, item }) => {
+  const itemRef = useRef(null);
 
   useEffect(() => {
-    if (focus) {
-      // Move element into view when it is focused
-      ref.current.focus();
-    }
+    if (focus) itemRef.current.focus();
   }, [focus]);
 
-  const handleSelect = useCallback(() => {
-    alert(`${title}`);
+  const handleSelect = () => {
     setFocus(index);
-  }, [title, index, setFocus]);
+    onSelect(item);
+  };
 
   return (
     <DropdownItem
       data-testid="dropdown-item"
-      data-value={title}
+      data-item={item}
       id={`dropdown__item`}
       onClick={handleSelect}
       onKeyPress={handleSelect}
       role="button"
-      ref={ref}
+      ref={itemRef}
       tabIndex={focus ? 0 : -1}
     >
-      {title}
+      {item.title}
     </DropdownItem>
   );
 };

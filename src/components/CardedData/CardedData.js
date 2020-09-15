@@ -19,8 +19,8 @@ const CardedData = ({
     columnOverwrite,
   });
 
-  const onFilter = (event) => {
-    console.log(event);
+  const onFilter = (select) => {
+    console.log(select);
   };
 
   return (

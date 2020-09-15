@@ -5,12 +5,15 @@ const useKeyedNavigation = ({ size }) => {
 
   const handleKeyDown = useCallback(
     (e) => {
-      if (e.keyCode === 40) {
-        // Down arrow
+      const keyCodes = {
+        upArrow: 38,
+        downArrow: 40,
+      };
+
+      if (e.keyCode === keyCodes.downArrow) {
         e.preventDefault();
         setCurrentFocus(currentFocus === size - 1 ? 0 : currentFocus + 1);
-      } else if (e.keyCode === 38) {
-        // Up arrow
+      } else if (e.keyCode === keyCodes.upArrow) {
         e.preventDefault();
         setCurrentFocus(currentFocus === 0 ? size - 1 : currentFocus - 1);
       }
@@ -20,11 +23,10 @@ const useKeyedNavigation = ({ size }) => {
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown, false);
-
     return () => {
       document.removeEventListener("keydown", handleKeyDown, false);
     };
-  }, [currentFocus, size]);
+  }, [currentFocus, handleKeyDown, size]);
 
   return [currentFocus, setCurrentFocus];
 };
