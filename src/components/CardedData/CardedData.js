@@ -28,7 +28,7 @@ const CardedData = ({
       {displayColumnHeader && <Header {...{ columns, onFilter }} />}
       {displayFilterDropdown && <DropdownFilter {...{ columns, onFilter }} />}
       <div className="items-wrapper" data-testid={`items-wrapper`}>
-        {/* {data.map((each, index) => {
+        {data.map((each, index) => {
           const {
             publisher,
             description,
@@ -60,7 +60,7 @@ const CardedData = ({
               </span>
             </div>
           );
-        })} */}
+        })}
       </div>
     </div>
   );
