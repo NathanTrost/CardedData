@@ -8,7 +8,9 @@ import {
   //   setTransition,
 } from "./utils";
 
-export const DropdownContainer = styled.div``;
+export const DropdownContainer = styled.div`
+  display: inline-block;
+`;
 
 export const DropdownListContainer = styled.div`
   ${setBorder()}

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { DropdownFilterProps } from "../../types";
+import React, { useState, useRef } from "react";
 
-import useOutsideClick from "../../customHooks/onOutsideClick";
+import { DropdownFilterProps } from "../../types";
+import useOutsideClick from "../../customHooks/useOutsideClick";
+import useKeyedNavigation from "../../customHooks/useKeyedNavigation";
+
+import DropdownFilterOption from "./DropdownFilterOption";
 
 import { DropdownBtn } from "../styled/Buttons";
 import { Label } from "../styled/Label";
@@ -9,13 +12,19 @@ import {
   DropdownContainer,
   DropdownListContainer,
   DropdownList,
-  DropdownItem,
 } from "../styled/Dropdown";
 
 const DropdownFilter = ({ columns, onFilter }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
+  const options = [{ id: null, title: "" }].concat(columns);
+
+  const [focus, setFocus] = useKeyedNavigation({
+    size: options.length,
+  });
+
+  const dropdownRef = useRef();
   const handleBlur = (event) => setOpen(false);
 
   useOutsideClick({
@@ -26,21 +35,15 @@ const DropdownFilter = ({ columns, onFilter }) => {
 
   const toggleDropdown = () => setOpen(!open);
 
-  const onSelect = (event) => {
-    setSelected(event.currentTarget.dataset.value);
-    toggleDropdown();
-    onFilter();
-  };
-
   return (
     <>
-      <Label id="dropdown__label">Filter By</Label>
       <DropdownContainer
         ariaLabel="dropdown"
         data-testid="dropdown"
         id={`dropdown`}
-        styles={{ display: "inlineBlock" }}
+        ref={dropdownRef}
       >
+        <Label id="dropdown__label">Filter By</Label>
         <DropdownBtn
           alt={selected}
           aria-expanded={open}
@@ -58,18 +61,17 @@ const DropdownFilter = ({ columns, onFilter }) => {
           style={{ position: "absolute", display: open ? "block" : "none" }}
         >
           <DropdownList>
-            {[{ id: null, title: "" }].concat(columns).map((each, index) => {
+            {options.map((each, index) => {
               const titleKey = `${index}-${each.id}`;
               return (
-                <DropdownItem
-                  data-testid="dropdown-item"
-                  data-value={each.title}
-                  id={`dropdown__item`}
+                <DropdownFilterOption
+                  focus={focus === index}
                   key={titleKey}
-                  onClick={onSelect}
+                  title={each.title}
+                  {...{ index, setFocus }}
                 >
                   {each.title}
-                </DropdownItem>
+                </DropdownFilterOption>
               );
             })}
           </DropdownList>
