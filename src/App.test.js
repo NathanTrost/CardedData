@@ -1,21 +1,20 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { queryByTestId } from "@testing-library/dom";
+import { getByTestId, queryByTestId } from "@testing-library/dom";
 import App from "./App";
 
 describe("CardedData", () => {
   const { container } = render(<App />);
 
   test("should display wrapper and all markup in first item", () => {
-    const wrapper = container.firstChild;
-    expect(wrapper).toHaveClass("cb-wrapper");
-    const itemWrapper = wrapper.firstChild;
-    expect(itemWrapper).toHaveClass("cb-item-wrapper");
+    const itemsWrapper = getByTestId(container, "items-wrapper");
+    const firstItem = itemsWrapper.firstChild;
+    expect(firstItem).toBeTruthy();
 
-    expect(queryByTestId(itemWrapper, "cb-title")).toBeTruthy();
-    expect(queryByTestId(itemWrapper, "cb-publisher")).toBeTruthy();
-    expect(queryByTestId(itemWrapper, "cb-description")).toBeTruthy();
-    expect(queryByTestId(itemWrapper, "cb-release_date")).toBeTruthy();
-    expect(queryByTestId(itemWrapper, "cb-creators")).toBeTruthy();
+    expect(queryByTestId(firstItem, "title")).toBeTruthy();
+    expect(queryByTestId(firstItem, "publisher")).toBeTruthy();
+    expect(queryByTestId(firstItem, "description")).toBeTruthy();
+    expect(queryByTestId(firstItem, "release_date")).toBeTruthy();
+    expect(queryByTestId(firstItem, "creators")).toBeTruthy();
   });
 });
