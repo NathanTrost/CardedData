@@ -25,39 +25,64 @@ const CardedData = ({
 
   return (
     <div className="wrapper" data-testid={`wrapper`}>
-      {displayColumnHeader && <Header {...{ columns, onFilter }} />}
-      {displayFilterDropdown && <DropdownFilter {...{ columns, onFilter }} />}
-      <div className="items-wrapper" data-testid={`items-wrapper`}>
-        {data.map((each, index) => {
-          const {
-            publisher,
-            description,
-            title,
-            creators,
-            release_date,
-          } = each;
-          const itemKey = `${index}-item-${each.id}`;
+      <div
+        className="header-wrapper"
+        style={{ display: "block", width: "100%" }}
+      >
+        {displayColumnHeader && <Header {...{ columns, onFilter }} />}
+        {displayFilterDropdown && <DropdownFilter {...{ columns, onFilter }} />}
+      </div>
+      <div
+        className="items-wrapper"
+        data-testid={`items-wrapper`}
+        style={{ display: "block", width: "100%" }}
+      >
+        {data.map((record, index) => {
+          const itemKey = `${index}-item-${record.id}`;
           return (
             <div
               className="item-wrapper"
               data-testid={`item-wrapper`}
               key={itemKey}
+              style={{
+                margin: "10px",
+                padding: "10px",
+                border: "1px solid black",
+                display: "block",
+                boxSizing: "border-box",
+                overflow: "auto",
+              }}
             >
-              <span className="title" data-testid={`title`}>
-                {title}
-              </span>
-              <span className="publisher" data-testid={`publisher`}>
-                {publisher}
-              </span>
-              <span className="description" data-testid={`description`}>
-                {description}
-              </span>
-              <span className="release_date" data-testid={`release_date`}>
-                {release_date}
-              </span>
-              <span className="creators" data-testid={`creators`}>
-                {creators}
-              </span>
+              {columns.map((column, columnIndex) => {
+                // Shape of column data
+                // {
+                //   position: 0,
+                //   id: "title",
+                //   title: "Title",
+                //   className: "col-title",
+                //   dataIndex: "title",
+                //   render: (text, record) => <div>{text}</div>,
+                // },
+
+                const columnKey = `${columnIndex}-${column.id}`;
+                return (
+                  <div
+                    data-testid={column.id}
+                    key={columnKey}
+                    className={column.className}
+                    style={{
+                      float: "left",
+                      backgroundColor: "#C3C3C3",
+                      boxSizing: "border-box",
+                      padding: "5px",
+                      margin: "5px",
+                    }}
+                    onFilter={onFilter}
+                  >
+                    {column.render(record[column.id], record)}
+                  </div>
+                );
+              })}
             </div>
           );
         })}
