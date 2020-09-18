@@ -1,16 +1,28 @@
 import React from "react";
 import { CardedDataProps } from "../../types";
 import { getColumns } from "../../utils/getColumns";
-import Header from "../Header";
+
+import {
+  StyledAppWrapper,
+  StyledItemWrapper,
+  StyledItemsWrapper,
+} from "../styled/Grid";
+
+import ColumnLabels from "../ColumnLabels";
 import DropdownFilter from "../DropdownFilter";
 
 const CardedData = ({
   columnOverwrite = false,
   customColumns,
+  customHeader = false,
   customMethods,
   data,
-  displayColumnHeader = true,
-  displayFilterDropdown = false,
+  layout = {
+    displayColumnLabels: true,
+    displayFilterDropdown: false,
+    gridType: "columnsAsGrid",
+    useGrid: true,
+  },
 }) => {
   const columns = getColumns({
     data,
@@ -23,47 +35,38 @@ const CardedData = ({
     console.log(select);
   };
 
+  const { displayColumnLabels, displayFilterDropdown, useGrid } = layout;
+  const { gridType } = useGrid && layout;
+
+  const shouldDisplayColumnLabels =
+    gridType === "columnsAsGrid" && displayColumnLabels;
+
   return (
-    <div className="wrapper" data-testid={`wrapper`}>
-      <div
-        className="header-wrapper"
-        style={{ display: "block", width: "100%" }}
-      >
-        {displayColumnHeader && <Header {...{ columns, onFilter }} />}
+    <StyledAppWrapper className="wrapper" data-testid={`wrapper`}>
+      <div className="header-wrapper" data-testid={`header-wrapper`}>
+        {customHeader}
         {displayFilterDropdown && <DropdownFilter {...{ columns, onFilter }} />}
+        {shouldDisplayColumnLabels && (
+          <ColumnLabels {...{ columns, onFilter }} />
+        )}
       </div>
-      <div
+      <StyledItemsWrapper
         className="items-wrapper"
         data-testid={`items-wrapper`}
-        style={{ display: "block", width: "100%" }}
+        useGrid={useGrid && gridType === "itemsAsGrid"}
+        gridLength={layout.gridLength}
       >
         {data.map((record, index) => {
           const itemKey = `${index}-item-${record.id}`;
           return (
-            <div
+            <StyledItemWrapper
               className="item-wrapper"
               data-testid={`item-wrapper`}
+              useGrid={useGrid && gridType === "columnsAsGrid"}
+              gridLength={columns.length}
               key={itemKey}
-              style={{
-                margin: "10px",
-                padding: "10px",
-                border: "1px solid black",
-                display: "block",
-                boxSizing: "border-box",
-                overflow: "auto",
-              }}
             >
               {columns.map((column, columnIndex) => {
-                // Shape of column data
-                // {
-                //   position: 0,
-                //   id: "title",
-                //   title: "Title",
-                //   className: "col-title",
-                //   dataIndex: "title",
-                //   render: (text, record) => <div>{text}</div>,
-                // },
-
                 const columnKey = `${columnIndex}-${column.id}`;
                 return (
                   <div
@@ -72,7 +75,7 @@ const CardedData = ({
                     className={column.className}
                     style={{
                       float: "left",
-                      backgroundColor: "#C3C3C3",
+                      backgroundColor: "#DDD",
                       boxSizing: "border-box",
                       padding: "5px",
                       margin: "5px",
@@ -83,11 +86,11 @@ const CardedData = ({
                   </div>
                 );
               })}
-            </div>
+            </StyledItemWrapper>
           );
         })}
-      </div>
-    </div>
+      </StyledItemsWrapper>
+    </StyledAppWrapper>
   );
 };
 

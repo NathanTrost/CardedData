@@ -1,12 +1,5 @@
 import styled from "styled-components";
-import {
-  setColor,
-  //   setRem,
-  //   setLetterSpacing,
-  //   setFont,
-  setBorder,
-  //   setTransition,
-} from "./utils";
+import { setColor, setBorder } from "./utils";
 
 export const DropdownContainer = styled.div`
   display: inline-block;

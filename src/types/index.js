@@ -13,14 +13,7 @@ import {
 } from "prop-types";
 import { allItemsAreFunctions } from "./customDefinitions";
 
-export const HeaderProps = {
-  columnOverwrite: bool,
-  displayColumnHeader: bool,
-  displayFilterDropdown: bool,
-  onFilter: func,
-};
-
-export const DropdownFilterProps = {
+const filterProps = {
   columns: arrayOf(
     shape({
       id: string.isRequired,
@@ -30,12 +23,18 @@ export const DropdownFilterProps = {
   onFilter: func,
 };
 
+export const HeaderProps = filterProps;
+
+export const DropdownFilterProps = filterProps;
+
 export const HeaderLabelProps = {
   children: oneOfType([string, node]).isRequired,
   onFilter: func,
 };
 
 export const CardedDataProps = {
+  columnOverwrite: bool,
+  customHeader: node,
   customColumns: oneOfType([
     arrayOf(
       shape({
@@ -50,5 +49,12 @@ export const CardedDataProps = {
   ]),
   customMethods: objectOf(allItemsAreFunctions),
   data: array.isRequired,
-  ...HeaderProps,
+  layout: shape({
+    displayColumnLabels: bool,
+    displayFilterDropdown: bool,
+    gridType: oneOf(["itemsAsGrid", "columnsAsGrid"]),
+    gridLength: number,
+    useGrid: bool,
+  }),
+  ...filterProps,
 };
