@@ -38,7 +38,7 @@ export const HeaderLabelProps = {
 
 export const CardedDataProps = {
   columnOverwrite: bool,
-  customHeader: node,
+  customHeader: oneOfType([node, func]),
   customColumns: oneOfType([
     arrayOf(
       shape({

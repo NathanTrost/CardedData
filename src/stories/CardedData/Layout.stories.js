@@ -7,7 +7,7 @@ const {
 } = require("../../mockColumnDefinitions/comicBookColumns");
 
 export default {
-  title: "Carded Data/Header Display",
+  title: "Carded Data/Layout",
   component: CardedData,
   args: {
     columnOverwrite: true,
@@ -24,30 +24,13 @@ export default {
 
 const Template = (args) => <CardedData {...args} />;
 
-export const WithColumnTitles = Template.bind({});
+export const ColumnsAsGridLayout = Template.bind({});
 
-export const WithFilterDropdown = Template.bind({});
-WithFilterDropdown.args = {
+export const ItemsAsGridLayout = Template.bind({});
+
+ItemsAsGridLayout.args = {
   layout: {
-    displayFilterDropdown: true,
-  },
-};
-
-export const WithNoHeader = Template.bind({});
-WithNoHeader.args = {
-  layout: {
-    displayColumnLabels: false,
-  },
-};
-
-const HeaderComponent = () => {
-  return <h1>Hi there!!!</h1>;
-};
-
-export const WithCustomHeader = Template.bind({});
-WithCustomHeader.args = {
-  customHeader: <HeaderComponent />,
-  layout: {
-    displayFilterDropdown: true,
+    gridType: "itemsAsGrid",
+    gridLength: 3,
   },
 };
