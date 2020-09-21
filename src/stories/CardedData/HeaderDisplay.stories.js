@@ -22,11 +22,6 @@ WithColumnTitles.args = {
   columnOverwrite: true,
   customColumns: getComicBookColumns,
   data: comics,
-  layout: {
-    displayColumnLabels: true,
-    gridType: "columnsAsGrid",
-    useGrid: true,
-  },
 };
 
 export const WithFilterDropdown = Template.bind({});
@@ -35,10 +30,7 @@ WithFilterDropdown.args = {
   customColumns: getComicBookColumns,
   data: comics,
   layout: {
-    displayColumnLabels: true,
     displayFilterDropdown: true,
-    gridType: "columnsAsGrid",
-    useGrid: true,
   },
 };
 
@@ -50,7 +42,5 @@ WithNoHeader.args = {
   layout: {
     displayColumnLabels: false,
     displayFilterDropdown: false,
-    gridType: "columnsAsGrid",
-    useGrid: true,
   },
 };

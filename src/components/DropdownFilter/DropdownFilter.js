@@ -1,13 +1,11 @@
 import React, { useState, useRef } from "react";
 
 import { DropdownFilterProps } from "../../types";
-import useOutsideClick from "../../customHooks/useOutsideClick";
-import useKeyedNavigation from "../../customHooks/useKeyedNavigation";
+import { useOutsideClick, useKeyedNavigation } from "../../customHooks";
 
 import DropdownFilterOption from "./DropdownFilterOption";
 
 import { DropdownBtn } from "../styled/Buttons";
-
 import {
   DropdownContainer,
   Dropdown,
