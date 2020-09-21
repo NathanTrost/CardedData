@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import { setShadow } from "./utils";
 
+const borderPadding = "20px";
 const doGridStyling = (useGrid, length) => {
   return (
     useGrid &&
@@ -8,34 +10,35 @@ const doGridStyling = (useGrid, length) => {
   );
 };
 
-export const StyledItemWrapper = styled.div`
-  margin: 16px 0;
-  padding: 32px 0;
-  border-radius: 2px;
-  boxsizing: border-box;
-  overflow: auto;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  ${(props) => doGridStyling(props.useGrid, props.gridLength)}}
+export const StyledAppWrapper = styled.div`
+  padding: 10px;
+  box-sizing: border-box;
+  display: block;
 `;
 
-export const StyledItemsWrapper = styled.div`
-  margin: 10px 0;
-  padding: 10px 0;
-  box-sizing: border-box;
-  overflow: auto;
-  ${(props) => doGridStyling(props.useGrid, props.gridLength)}
+export const StyledHeaderWrapper = styled.div`
+  padding: 10px;
 `;
 
 export const StyledColumnLabels = styled.div`
-  margin: 10px;
-  padding: 10px;
+  padding: 8px ${borderPadding};
   box-sizing: border-box;
   text-align: left;
   ${(props) => doGridStyling(true, props.gridLength)}
 `;
 
-export const StyledAppWrapper = styled.div`
-  padding: 30px;
+export const StyledItemsWrapper = styled.div`
+  padding: 8px ${borderPadding};
   box-sizing: border-box;
+  overflow: auto;
+  ${(props) => doGridStyling(props.useGrid, props.gridLength)}
+`;
+
+export const StyledItemWrapper = styled.div`
+  padding: 16px 0;
+  border-radius: 2px;
+  boxsizing: border-box;
+  overflow: auto;
+  ${setShadow()}
+  ${(props) => doGridStyling(props.useGrid, props.gridLength)}}
 `;

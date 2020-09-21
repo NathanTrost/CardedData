@@ -6,7 +6,10 @@ import { StyledColumnLabels } from "../styled/Grid";
 
 const ColumnLabels = ({ columns, onFilter }) => {
   return (
-    <StyledColumnLabels className="header-row" gridLength={columns.length}>
+    <StyledColumnLabels
+      className="columnLabels-row"
+      gridLength={columns.length}
+    >
       {columns.map((each, index) => {
         const titleKey = `${index}-${each.id}`;
         return (

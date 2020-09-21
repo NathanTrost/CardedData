@@ -22,7 +22,11 @@ WithColumnTitles.args = {
   columnOverwrite: true,
   customColumns: getComicBookColumns,
   data: comics,
-  displayColumnHeader: true,
+  layout: {
+    displayColumnLabels: true,
+    gridType: "columnsAsGrid",
+    useGrid: true,
+  },
 };
 
 export const WithFilterDropdown = Template.bind({});
@@ -30,7 +34,12 @@ WithFilterDropdown.args = {
   columnOverwrite: true,
   customColumns: getComicBookColumns,
   data: comics,
-  displayFilterDropdown: true,
+  layout: {
+    displayColumnLabels: true,
+    displayFilterDropdown: true,
+    gridType: "columnsAsGrid",
+    useGrid: true,
+  },
 };
 
 export const WithNoHeader = Template.bind({});
@@ -38,6 +47,10 @@ WithNoHeader.args = {
   columnOverwrite: true,
   customColumns: getComicBookColumns,
   data: comics,
-  displayColumnHeader: false,
-  displayFilterDropdown: false,
+  layout: {
+    displayColumnLabels: false,
+    displayFilterDropdown: false,
+    gridType: "columnsAsGrid",
+    useGrid: true,
+  },
 };

@@ -4,6 +4,7 @@ import { getColumns } from "../../utils/getColumns";
 
 import {
   StyledAppWrapper,
+  StyledHeaderWrapper,
   StyledItemWrapper,
   StyledItemsWrapper,
 } from "../styled/Grid";
@@ -43,13 +44,28 @@ const CardedData = ({
 
   return (
     <StyledAppWrapper className="wrapper" data-testid={`wrapper`}>
-      <div className="header-wrapper" data-testid={`header-wrapper`}>
-        {customHeader}
-        {displayFilterDropdown && <DropdownFilter {...{ columns, onFilter }} />}
+      <StyledHeaderWrapper
+        className="header-wrapper"
+        data-testid={`header-wrapper`}
+      >
+        <div
+          className="secondary-header-wrapper"
+          data-testid={"secondary-header-wrapper"}
+          style={{ overflow: "auto", width: "100%" }}
+        >
+          {customHeader && (
+            <div className="custom-header" data-testid={"custom-header"}>
+              {customHeader}
+            </div>
+          )}
+          {displayFilterDropdown && (
+            <DropdownFilter {...{ columns, onFilter }} />
+          )}
+        </div>
         {shouldDisplayColumnLabels && (
           <ColumnLabels {...{ columns, onFilter }} />
         )}
-      </div>
+      </StyledHeaderWrapper>
       <StyledItemsWrapper
         className="items-wrapper"
         data-testid={`items-wrapper`}

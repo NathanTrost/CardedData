@@ -7,9 +7,11 @@ import useKeyedNavigation from "../../customHooks/useKeyedNavigation";
 import DropdownFilterOption from "./DropdownFilterOption";
 
 import { DropdownBtn } from "../styled/Buttons";
-import { Label } from "../styled/Label";
+
 import {
   DropdownContainer,
+  Dropdown,
+  DropdownLabel,
   DropdownListContainer,
   DropdownList,
 } from "../styled/Dropdown";
@@ -42,14 +44,17 @@ const DropdownFilter = ({ columns, onFilter }) => {
   };
 
   return (
-    <>
-      <DropdownContainer
+    <DropdownContainer
+      className="dropdown-container"
+      data-testid="dropdown-container"
+    >
+      <Dropdown
         ariaLabel="dropdown"
         data-testid="dropdown"
         id={`dropdown`}
         ref={dropdownRef}
       >
-        <Label id="dropdown__label">Filter By</Label>
+        <DropdownLabel id="dropdown__label">Filter By</DropdownLabel>
         <DropdownBtn
           alt={selected.title}
           aria-expanded={open}
@@ -82,8 +87,8 @@ const DropdownFilter = ({ columns, onFilter }) => {
             })}
           </DropdownList>
         </DropdownListContainer>
-      </DropdownContainer>
-    </>
+      </Dropdown>
+    </DropdownContainer>
   );
 };
 
