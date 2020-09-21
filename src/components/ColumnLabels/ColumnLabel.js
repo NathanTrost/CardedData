@@ -1,15 +1,15 @@
 import React from "react";
 import { HeaderLabelProps } from "../../types";
+import { StyledColumnLabel } from "../styled/Label";
 
 const ColumnLabel = ({ children, onFilter }) => (
-  <strong
-    className="header-title"
-    data-testid={`header-title`}
+  <StyledColumnLabel
+    className="columnLabel"
+    data-testid={`columnLabel`}
     onClick={onFilter}
-    style={{ display: "inline-block", margin: "30px" }}
   >
     {children}
-  </strong>
+  </StyledColumnLabel>
 );
 
 ColumnLabel.propTypes = HeaderLabelProps;

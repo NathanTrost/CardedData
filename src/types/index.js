@@ -13,22 +13,23 @@ import {
 } from "prop-types";
 import { allItemsAreFunctions } from "./customDefinitions";
 
-export const HeaderProps = {
-  columnOverwrite: bool,
-  displayColumnHeader: bool,
-  displayFilterDropdown: bool,
+const filterProps = {
+  columns: oneOfType([
+    arrayOf(
+      shape({
+        id: string.isRequired,
+        title: string.isRequired,
+      })
+    ),
+    func, // Function should return the same shape as above, it just accepts function params
+  ]),
+
   onFilter: func,
 };
 
-export const DropdownFilterProps = {
-  columns: arrayOf(
-    shape({
-      id: string.isRequired,
-      title: string.isRequired,
-    })
-  ),
-  onFilter: func,
-};
+export const HeaderProps = filterProps;
+
+export const DropdownFilterProps = filterProps;
 
 export const HeaderLabelProps = {
   children: oneOfType([string, node]).isRequired,
@@ -36,6 +37,8 @@ export const HeaderLabelProps = {
 };
 
 export const CardedDataProps = {
+  columnOverwrite: bool,
+  customHeader: node,
   customColumns: oneOfType([
     arrayOf(
       shape({
@@ -50,5 +53,12 @@ export const CardedDataProps = {
   ]),
   customMethods: objectOf(allItemsAreFunctions),
   data: array.isRequired,
-  ...HeaderProps,
+  layout: shape({
+    displayColumnLabels: bool,
+    displayFilterDropdown: bool,
+    gridType: oneOf(["itemsAsGrid", "columnsAsGrid"]),
+    gridLength: number,
+    useGrid: bool,
+  }),
+  ...filterProps,
 };

@@ -15,9 +15,7 @@ export const deriveColumnsFromData = (data) => {
       id: each,
       position: (key + 1) * 100,
       title: formatKeyForTitle(each),
-      render: (text, record) => (
-        <div className={`cd-column-${each}`}>{text}</div>
-      ),
+      render: (text, record) => <div className={`col-${each}`}>{text}</div>,
     };
     return column;
   });

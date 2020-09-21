@@ -36,10 +36,12 @@ export const setLetterSpacing = (number = 2) => {
   return `letter-spacing: ${number}px`;
 };
 
-export const setShadow = {
-  light: "box-shadow: 5px 5px 7px 0px rgba(97,86,67,1)",
-  dark: "box-shadow: 8px 8px 7px 0px rgba(97,86,67,1)",
-  darkest: "box-shadow: 12px 12px 7px 0px rgba(97,86,67,1);",
+export const setShadow = () => {
+  return `box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }`;
 };
 
 export const setBorder = ({

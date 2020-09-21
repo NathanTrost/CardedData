@@ -2,9 +2,14 @@ import React from "react";
 import { HeaderProps } from "../../types";
 import ColumnLabel from "./ColumnLabel";
 
-const Header = ({ columns, onFilter }) => {
+import { StyledColumnLabels } from "../styled/Grid";
+
+const ColumnLabels = ({ columns, onFilter }) => {
   return (
-    <div className="header-row">
+    <StyledColumnLabels
+      className="columnLabels-row"
+      gridLength={columns.length}
+    >
       {columns.map((each, index) => {
         const titleKey = `${index}-${each.id}`;
         return (
@@ -13,10 +18,10 @@ const Header = ({ columns, onFilter }) => {
           </ColumnLabel>
         );
       })}
-    </div>
+    </StyledColumnLabels>
   );
 };
 
-Header.propTypes = HeaderProps;
+ColumnLabels.propTypes = HeaderProps;
 
-export default Header;
+export default ColumnLabels;
