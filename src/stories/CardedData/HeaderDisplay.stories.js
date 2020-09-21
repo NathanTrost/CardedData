@@ -10,25 +10,24 @@ export default {
   title: "Carded Data/Header Display",
   component: CardedData,
   args: {
-    columns: () => {},
-    data: [],
+    columnOverwrite: true,
+    customColumns: getComicBookColumns,
+    data: comics,
+    layout: {
+      displayColumnLabels: true,
+      displayFilterDropdown: false,
+      gridType: "columnsAsGrid",
+      useGrid: true,
+    },
   },
 };
 
 const Template = (args) => <CardedData {...args} />;
 
 export const WithColumnTitles = Template.bind({});
-WithColumnTitles.args = {
-  columnOverwrite: true,
-  customColumns: getComicBookColumns,
-  data: comics,
-};
 
 export const WithFilterDropdown = Template.bind({});
 WithFilterDropdown.args = {
-  columnOverwrite: true,
-  customColumns: getComicBookColumns,
-  data: comics,
   layout: {
     displayFilterDropdown: true,
   },
@@ -36,11 +35,19 @@ WithFilterDropdown.args = {
 
 export const WithNoHeader = Template.bind({});
 WithNoHeader.args = {
-  columnOverwrite: true,
-  customColumns: getComicBookColumns,
-  data: comics,
   layout: {
     displayColumnLabels: false,
-    displayFilterDropdown: false,
+  },
+};
+
+const HeaderComponent = () => {
+  return <h1>Hi there!!!</h1>;
+};
+
+export const WithCustomHeader = Template.bind({});
+WithCustomHeader.args = {
+  customHeader: <HeaderComponent />,
+  layout: {
+    displayFilterDropdown: true,
   },
 };
