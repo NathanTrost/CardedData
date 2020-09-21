@@ -45,12 +45,17 @@ const CardedData = ({
     console.log(select);
   };
 
-  const { displayColumnLabels, displayFilterDropdown, useGrid } = layoutRules;
+  const {
+    displayColumnLabels,
+    displayFilterDropdown,
+    useGrid,
+    gridLength,
+  } = layoutRules;
   const { gridType } = useGrid && layoutRules;
 
   const shouldDisplayColumnLabels =
     gridType === "columnsAsGrid" && displayColumnLabels;
-
+  console.log("gridType", gridType);
   return (
     <StyledAppWrapper className="wrapper" data-testid={`wrapper`}>
       <StyledHeaderWrapper
@@ -75,7 +80,7 @@ const CardedData = ({
         className="items_wrapper"
         data-testid={`items-wrapper`}
         useGrid={useGrid && gridType === "itemsAsGrid"}
-        gridLength={layoutRules.gridLength}
+        gridLength={gridLength}
       >
         {data.map((record, index) => {
           const itemKey = `${index}-item-${record.id}`;
@@ -83,7 +88,8 @@ const CardedData = ({
             <StyledItemWrapper
               className="item-wrapper"
               data-testid={`item-wrapper`}
-              useGrid={useGrid && gridType === "columnsAsGrid"}
+              useGrid={useGrid}
+              gridType={gridType}
               gridLength={columns.length}
               key={itemKey}
             >

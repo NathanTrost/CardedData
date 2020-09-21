@@ -7,7 +7,7 @@ const {
 } = require("../../mockColumnDefinitions/comicBookColumns");
 
 export default {
-  title: "Carded Data/Colums",
+  title: "Carded Data/Columns",
   component: CardedData,
   args: {
     columns: () => {},
