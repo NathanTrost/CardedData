@@ -14,12 +14,16 @@ import {
 import { allItemsAreFunctions } from "./customDefinitions";
 
 const filterProps = {
-  columns: arrayOf(
-    shape({
-      id: string.isRequired,
-      title: string.isRequired,
-    })
-  ),
+  columns: oneOfType([
+    arrayOf(
+      shape({
+        id: string.isRequired,
+        title: string.isRequired,
+      })
+    ),
+    func, // Function should return the same shape as above, it just accepts function params
+  ]),
+
   onFilter: func,
 };
 

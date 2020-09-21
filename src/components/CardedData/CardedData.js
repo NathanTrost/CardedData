@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useMountingEffect } from "../../customHooks";
 import { CardedDataProps } from "../../types";
 import { getColumns } from "../../utils/getColumns";
 
@@ -12,32 +13,40 @@ import {
 import ColumnLabels from "../ColumnLabels";
 import DropdownFilter from "../DropdownFilter";
 
+const defaultLayoutRules = {
+  displayColumnLabels: true,
+  displayFilterDropdown: false,
+  gridType: "columnsAsGrid",
+  useGrid: true,
+};
+
 const CardedData = ({
   columnOverwrite = false,
   customColumns,
   customHeader = false,
   customMethods,
   data,
-  layout = {
-    displayColumnLabels: true,
-    displayFilterDropdown: false,
-    gridType: "columnsAsGrid",
-    useGrid: true,
-  },
+  layout = defaultLayoutRules,
 }) => {
-  const columns = getColumns({
-    data,
-    customColumns,
-    customMethods,
-    columnOverwrite,
+  const [columns, setColumns] = useState([]);
+  const layoutRules = Object.assign({}, defaultLayoutRules, layout);
+
+  useMountingEffect(() => {
+    const columns = getColumns({
+      data,
+      customColumns,
+      customMethods,
+      columnOverwrite,
+    });
+    setColumns(columns);
   });
 
   const onFilter = (select) => {
     console.log(select);
   };
 
-  const { displayColumnLabels, displayFilterDropdown, useGrid } = layout;
-  const { gridType } = useGrid && layout;
+  const { displayColumnLabels, displayFilterDropdown, useGrid } = layoutRules;
+  const { gridType } = useGrid && layoutRules;
 
   const shouldDisplayColumnLabels =
     gridType === "columnsAsGrid" && displayColumnLabels;
@@ -45,16 +54,12 @@ const CardedData = ({
   return (
     <StyledAppWrapper className="wrapper" data-testid={`wrapper`}>
       <StyledHeaderWrapper
-        className="header-wrapper"
+        className="header_wrapper"
         data-testid={`header-wrapper`}
       >
-        <div
-          className="secondary-header-wrapper"
-          data-testid={"secondary-header-wrapper"}
-          style={{ overflow: "auto", width: "100%" }}
-        >
+        <div className="header_wrapper-top" data-testid={"header_wrapper-top"}>
           {customHeader && (
-            <div className="custom-header" data-testid={"custom-header"}>
+            <div className="custom_header" data-testid={"custom-header"}>
               {customHeader}
             </div>
           )}
@@ -67,10 +72,10 @@ const CardedData = ({
         )}
       </StyledHeaderWrapper>
       <StyledItemsWrapper
-        className="items-wrapper"
+        className="items_wrapper"
         data-testid={`items-wrapper`}
         useGrid={useGrid && gridType === "itemsAsGrid"}
-        gridLength={layout.gridLength}
+        gridLength={layoutRules.gridLength}
       >
         {data.map((record, index) => {
           const itemKey = `${index}-item-${record.id}`;
@@ -96,7 +101,6 @@ const CardedData = ({
                       padding: "5px",
                       margin: "5px",
                     }}
-                    onFilter={onFilter}
                   >
                     {column.render(record[column.id], record)}
                   </div>
