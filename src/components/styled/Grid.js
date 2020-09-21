@@ -40,5 +40,13 @@ export const StyledItemWrapper = styled.div`
   boxsizing: border-box;
   overflow: auto;
   ${setShadow()}
-  ${(props) => doGridStyling(props.useGrid, props.gridLength)}}
+  ${(props) => {
+    if (props.useGrid) {
+      if (props.gridType === "columnsAsGrid") {
+        return doGridStyling(true, props.gridLength);
+      } else if (props.gridType === "itemsAsGrid") {
+        return `margin: ${borderPadding};`;
+      }
+    }
+  }}
 `;
