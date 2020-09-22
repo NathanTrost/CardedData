@@ -29,6 +29,7 @@ const CardedData = ({
   layout = defaultLayoutRules,
 }) => {
   const [columns, setColumns] = useState([]);
+  const [sortedData, sortData] = useState(data);
   const layoutRules = Object.assign({}, defaultLayoutRules, layout);
 
   useMountingEffect(() => {
@@ -41,8 +42,37 @@ const CardedData = ({
     setColumns(columns);
   });
 
-  const onFilter = (select) => {
-    console.log(select);
+  const sortAscendingByKey = (array, keyToSortBy) =>
+    array.sort((a, b) => {
+      if (a[keyToSortBy] < b[keyToSortBy]) return -1;
+      if (a[keyToSortBy] > b[keyToSortBy]) return 1;
+      return 0;
+    });
+
+  const sortDescendingByKey = (array, keyToSortBy) =>
+    array.sort((a, b) => {
+      if (a[keyToSortBy] > b[keyToSortBy]) return -1;
+      if (a[keyToSortBy] < b[keyToSortBy]) return 1;
+      return 0;
+    });
+
+  const onFilter = (select, direction) => {
+    const { dataKey, filterRule } = select;
+
+    if (filterRule) {
+      const which = 0;
+      console.log("onFilter", sortedData[which][dataKey]);
+      const textToSearch = filterRule(sortedData[which][dataKey]);
+    }
+
+    const newData =
+      direction === "ascending"
+        ? sortAscendingByKey([...sortedData], dataKey)
+        : direction === "descending"
+        ? sortDescendingByKey([...sortedData], dataKey)
+        : [...sortedData];
+
+    sortData(newData);
   };
 
   const {
@@ -55,7 +85,6 @@ const CardedData = ({
 
   const shouldDisplayColumnLabels =
     gridType === "columnsAsGrid" && displayColumnLabels;
-  console.log("gridType", gridType);
   return (
     <StyledAppWrapper className="wrapper" data-testid={`wrapper`}>
       <StyledHeaderWrapper
@@ -82,7 +111,7 @@ const CardedData = ({
         useGrid={useGrid && gridType === "itemsAsGrid"}
         gridLength={gridLength}
       >
-        {data.map((record, index) => {
+        {sortedData.map((record, index) => {
           const itemKey = `${index}-item-${record.id}`;
           return (
             <StyledItemWrapper
@@ -100,10 +129,8 @@ const CardedData = ({
                     data-testid={column.id}
                     key={columnKey}
                     className={column.className}
+                    // Temp styling
                     style={{
-                      float: "left",
-                      backgroundColor: "#DDD",
-                      boxSizing: "border-box",
                       padding: "5px",
                       margin: "5px",
                     }}

@@ -37,7 +37,7 @@ const DropdownFilter = ({ columns, onFilter }) => {
 
   const onSelect = (selected) => {
     setSelected(selected);
-    onFilter(selected);
+    onFilter(selected, "ascending");
     toggleDropdown();
   };
 

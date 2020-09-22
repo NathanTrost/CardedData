@@ -8,7 +8,10 @@
         "price": "$24.99",
         "creators": "(W) Ben Queen (A/CA) Joe Todd-Stanton",
         "release_date": "2020-09-02",
-        "diamond_id": "APR201332"
+        "diamond_id": "APR201332",
+        "writer": "Ben Queen",
+        "artist": "Joe Todd-Stanton",
+        "cover_artist": "Joe Todd-Stanton"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -18,7 +21,10 @@
         "creators": "(W) Jordie Bellaire (A/CA) David Lopez",
         "release_date": "2020-09-02",
         "diamond_id": "JUL200893",
-        "cover": "This is a cover"
+        "cover": "This is a cover",
+        "writer": "Jordie Bellaire",
+        "artist": "David Lopez",
+        "cover_artist": "David Lopez"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -27,7 +33,10 @@
         "price": "$3.99",
         "creators": "(W) Jordie Bellaire (A) David Lopez (CA) Marguerite Sauvage",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200894"
+        "diamond_id": "JUL200894",
+        "writer": "Jordie Bellaire",
+        "artist": "David Lopez",
+        "cover_artist": "Marguerite Sauvage"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -36,7 +45,10 @@
         "price": "$3.99",
         "creators": "(W) Jordie Bellaire (A) David Lopez (CA) Becca Carey",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200895"
+        "diamond_id": "JUL200895",
+        "writer": "Jordie Bellaire",
+        "artist": "David Lopez",
+        "cover_artist": "Becca Carey"
       },
       {
         "publisher": "BOOM! STUDIOS",
