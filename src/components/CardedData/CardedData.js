@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import classNames from "classnames";
+
 import { useMountingEffect } from "../../customHooks";
 import { CardedDataProps } from "../../types";
 import { getColumns } from "../../utils/getColumns";
@@ -8,17 +10,11 @@ import {
   StyledHeaderWrapper,
   StyledItemWrapper,
   StyledItemsWrapper,
+  StyledCellWrapper,
 } from "../styled/Grid";
 
 import ColumnLabels from "../ColumnLabels";
 import DropdownFilter from "../DropdownFilter";
-
-const defaultLayoutRules = {
-  displayColumnLabels: true,
-  displayFilterDropdown: false,
-  gridType: "columnsAsGrid",
-  useGrid: true,
-};
 
 const CardedData = ({
   columnOverwrite = false,
@@ -26,8 +22,15 @@ const CardedData = ({
   customHeader = false,
   customMethods,
   data,
-  layout = defaultLayoutRules,
+  layout = {},
 }) => {
+  const defaultLayoutRules = {
+    displayColumnLabels: true,
+    displayFilterDropdown: false,
+    gridType: "columnsAsGrid",
+    useGrid: true,
+  };
+
   const [columns, setColumns] = useState([]);
   const layoutRules = Object.assign({}, defaultLayoutRules, layout);
 
@@ -43,6 +46,7 @@ const CardedData = ({
 
   const onFilter = (select) => {
     console.log(select);
+    return;
   };
 
   const {
@@ -62,9 +66,9 @@ const CardedData = ({
         className="header_wrapper"
         data-testid={`header-wrapper`}
       >
-        <div className="header_wrapper-top" data-testid={"header_wrapper-top"}>
+        <div className="header_wrapper-top" data-testid={`header_wrapper-top`}>
           {customHeader && (
-            <div className="custom_header" data-testid={"custom-header"}>
+            <div className="custom_header" data-testid={`custom-header`}>
               {customHeader}
             </div>
           )}
@@ -96,20 +100,13 @@ const CardedData = ({
               {columns.map((column, columnIndex) => {
                 const columnKey = `${columnIndex}-${column.id}`;
                 return (
-                  <div
-                    data-testid={column.id}
+                  <StyledCellWrapper
+                    className={classNames(["cell-wrapper", column.className])}
+                    data-testid={`cell-wrapper`}
                     key={columnKey}
-                    className={column.className}
-                    style={{
-                      float: "left",
-                      backgroundColor: "#DDD",
-                      boxSizing: "border-box",
-                      padding: "5px",
-                      margin: "5px",
-                    }}
                   >
                     {column.render(record[column.id], record)}
-                  </div>
+                  </StyledCellWrapper>
                 );
               })}
             </StyledItemWrapper>
@@ -121,4 +118,5 @@ const CardedData = ({
 };
 
 CardedData.propTypes = CardedDataProps;
+
 export default CardedData;
