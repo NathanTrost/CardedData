@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { setShadow } from "./utils";
 
-const borderPadding = "20px";
+const itemSpacing = "20px";
 const doGridStyling = (useGrid, length) => {
   return (
     useGrid &&
@@ -21,14 +21,14 @@ export const StyledHeaderWrapper = styled.div`
 `;
 
 export const StyledColumnLabels = styled.div`
-  padding: 8px ${borderPadding};
+  padding: 8px ${itemSpacing};
   box-sizing: border-box;
   text-align: left;
   ${(props) => doGridStyling(true, props.gridLength)}
 `;
 
 export const StyledItemsWrapper = styled.div`
-  padding: 8px ${borderPadding};
+  padding: 8px ${itemSpacing};
   box-sizing: border-box;
   overflow: auto;
   ${(props) => doGridStyling(props.useGrid, props.gridLength)}
@@ -43,9 +43,10 @@ export const StyledItemWrapper = styled.div`
   ${(props) => {
     if (props.useGrid) {
       if (props.gridType === "columnsAsGrid") {
-        return doGridStyling(true, props.gridLength);
+        return `margin: ${itemSpacing} 0;
+        ${doGridStyling(true, props.gridLength)}`;
       } else if (props.gridType === "itemsAsGrid") {
-        return `margin: ${borderPadding};`;
+        return `margin: ${itemSpacing};`;
       }
     }
   }}
