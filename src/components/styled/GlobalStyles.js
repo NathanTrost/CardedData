@@ -7,11 +7,17 @@ const GlobalStyles = createGlobalStyle`
     padding:0;
     box-sizing:border-box;
 }
+:root {
+    --1h: 1.4rem;
+}
 body {
     font-size:100%;
     color:${setColor.mainBlack};
     background: ${setColor.mainWhite};
     ${setFont.main};   
+}
+html{
+    line-height: var(--1h)
 }
 h1{
     font-size:3em;
