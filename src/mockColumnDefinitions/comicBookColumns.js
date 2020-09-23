@@ -73,26 +73,21 @@ export function getComicBookColumns(commonFunctions) {
             /(?![\(])\w{1,2}(?=[*^\/\)])/g
           );
           const roleCodes = str.trim().match(roleIdentifierRegEx) || null;
-
-          console.log(roleCodes);
           const removeRoleRegex = new RegExp(/^[\(\w\)\/]*/s);
           const name = str.replace(removeRoleRegex, "").trim();
-          return roleCodes.map((role) => {
-            return {
-              role: acceptedRoles.find((role) => role.code === role),
-              name,
-            };
-          });
+
+          console.log("roleCodes", roleCodes, name);
+          return roleCodes;
+
+          // return roleCodes.map((role) => {
+          //   return {
+          //     role: acceptedRoles.find((role) => role.code === role),
+          //     name,
+          //   };
+          // });
         });
 
         console.log("roles", roles);
-
-        // const acceptedRoles = [
-        //   { type: "artist", code: "A" },
-        //   { type: "cover_artist", code: "CA" },
-        //   { type: "writer", code: "W" },
-        //   { type: "dual_artist", code: "A/CA" },
-        // ];
 
         // const createRoleObject = (role, str) => {
         //   const { code, type } = role;
