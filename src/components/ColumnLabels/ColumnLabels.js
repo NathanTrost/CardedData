@@ -1,13 +1,14 @@
 import React from "react";
-import { HeaderProps } from "../../types";
-import ColumnLabel from "./ColumnLabel";
+import { ColumnLabelsProps } from "../../types";
 
-import { StyledColumnLabels } from "../styled/Grid";
+import ColumnLabel from "./ColumnLabel";
+import { StyledColumnLabelsWrapper } from "../styled/Grid";
 
 const ColumnLabels = ({ columns, onFilter }) => {
   return (
-    <StyledColumnLabels
-      className="columnLabels-row"
+    <StyledColumnLabelsWrapper
+      className="column-labels-row"
+      data-testid={`column-labels-row`}
       gridLength={columns.length}
     >
       {columns.map((each, index) => {
@@ -18,10 +19,10 @@ const ColumnLabels = ({ columns, onFilter }) => {
           </ColumnLabel>
         );
       })}
-    </StyledColumnLabels>
+    </StyledColumnLabelsWrapper>
   );
 };
 
-ColumnLabels.propTypes = HeaderProps;
+ColumnLabels.propTypes = ColumnLabelsProps;
 
 export default ColumnLabels;
