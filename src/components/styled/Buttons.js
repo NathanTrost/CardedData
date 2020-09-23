@@ -42,11 +42,3 @@ export const PrimaryBtn = styled.button`
 export const SmallBtn = styled(PrimaryBtn)`
   padding: ${setRem(4)} ${setRem(9)};
 `;
-
-export const DropdownBtn = styled(PrimaryBtn)`
-  width: 140px;
-  height: 44px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
