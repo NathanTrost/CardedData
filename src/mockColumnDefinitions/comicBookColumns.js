@@ -74,14 +74,14 @@ export function getComicBookColumns(commonFunctions) {
       dataKey: "release_date",
       render: (text, record) => <div>{text}</div>,
     },
-    {
-      position: 400,
-      id: "creators",
-      title: "Creators",
-      className: "col-creators",
-      dataKey: "creators",
-      render: (text, record) => <div>{text}</div>,
-    },
+    // {
+    //   position: 400,
+    //   id: "creators",
+    //   title: "Creators",
+    //   className: "col-creators",
+    //   dataKey: "creators",
+    //   render: (text, record) => <div>{text}</div>,
+    // },
   ];
 }
 /* eslint-enable react/no-multi-comp */
