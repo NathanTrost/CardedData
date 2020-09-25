@@ -34,6 +34,28 @@ export function getComicBookColumns(commonFunctions) {
       title: "Artist",
       className: "col-artist",
       dataKey: "artist",
+      filterRule: (dataArray, direction) => {
+        // This is currently only wired up for ascending, so the 'direction' param is not yet used
+        const splitNames = (name) => {
+          if (!name) return { first: null, last: null };
+          const fullName = name.trim();
+          const first = fullName.substring(0, fullName.lastIndexOf(" "));
+          const last = fullName.substring(first.length).trim();
+          return { first, last };
+        };
+
+        return dataArray.sort((a, b) => {
+          const aName = splitNames(a.artist);
+          const bName = splitNames(b.artist);
+          if (aName.last === bName.last) {
+            if (aName.first < bName.first) return -1;
+            if (aName.first > bName.first) return 1;
+          }
+          if (aName.last < bName.last) return -1;
+          if (aName.last > bName.last) return 1;
+          return 0;
+        });
+      },
       render: (text, record) => <div>{text}</div>,
     },
     // {
@@ -58,70 +80,6 @@ export function getComicBookColumns(commonFunctions) {
       title: "Creators",
       className: "col-creators",
       dataKey: "creators",
-      filterRule: (text, record) => {
-        const acceptedRoles = [
-          { type: "artist", code: "A" },
-          { type: "cover_artist", code: "CA" },
-          { type: "writer", code: "W" },
-        ];
-
-        const splitRegEx = new RegExp(/(?=[\(])/g);
-        const rolesWithNames = text.split(splitRegEx);
-
-        const roles = rolesWithNames.filter((str, index) => {
-          const roleIdentifierRegEx = new RegExp(
-            /(?![\(])\w{1,2}(?=[*^\/\)])/g
-          );
-          const roleCodes = str.trim().match(roleIdentifierRegEx) || null;
-          const removeRoleRegex = new RegExp(/^[\(\w\)\/]*/s);
-          const name = str.replace(removeRoleRegex, "").trim();
-
-          console.log("roleCodes", roleCodes, name);
-          return roleCodes;
-
-          // return roleCodes.map((role) => {
-          //   return {
-          //     role: acceptedRoles.find((role) => role.code === role),
-          //     name,
-          //   };
-          // });
-        });
-
-        console.log("roles", roles);
-
-        // const createRoleObject = (role, str) => {
-        //   const { code, type } = role;
-        //   const codeWithParams = `(${code})`;
-        //   const startPos = str.indexOf(codeWithParams) + codeWithParams.length;
-        //   const roleString = str.substring(startPos).split("(")[0].trim();
-
-        //   const namesArray = roleString.split(",");
-
-        //   const names = namesArray.map((fullName) => {
-        //     const firstName = fullName
-        //       .substring(0, fullName.lastIndexOf(" "))
-        //       .trim();
-        //     const lastName = fullName.substring(firstName.length).trim();
-        //     return { firstName, lastName, fullName };
-        //   });
-
-        //   return {
-        //     role: type,
-        //     names,
-        //   };
-        // };
-
-        // const mappedRoles = acceptedRoles.map((role) => {
-        //   const hasMatch = text.match(role.code);
-        //   if (hasMatch) {
-        //     const creator = createRoleObject(role, text);
-        //     console.log("creator", creator);
-        //     return creator;
-        //   }
-        // });
-
-        return;
-      },
       render: (text, record) => <div>{text}</div>,
     },
   ];

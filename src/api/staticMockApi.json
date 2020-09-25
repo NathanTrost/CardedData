@@ -57,7 +57,9 @@
         "price": "$3.99",
         "creators": "(W) Maxwell Prince (A/CA) Tyler Jenkins",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200922"
+        "diamond_id": "JUL200922",
+        "writer": "Maxwell Prince",
+        "artist": "Tyler Jenkins"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -66,7 +68,10 @@
         "price": "$3.99",
         "creators": "(W) Maxwell Prince (A) Tyler Jenkins (CA) Martin Morazzo",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200923"
+        "diamond_id": "JUL200923",
+        "writer": "Maxwell Prince",
+        "artrist": "Tyler Jenkins",
+        "cover_artist": "Martin Morazzo"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -75,7 +80,10 @@
         "price": "$16.99",
         "creators": "(W) Ryan Parrott (A) Daniele Nicuolo (CA) Jamal Campbell",
         "release_date": "2020-09-02",
-        "diamond_id": "MAR201372"
+        "diamond_id": "MAR201372",
+        "writer": "Ryan Parrot",
+        "artrist": "Daniele Nicuolo",
+        "cover_artist": "Jamal Campbell"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -84,7 +92,10 @@
         "price": "$3.99",
         "creators": "(W) Tom Taylor (A) Daniele Di Nicuolo (CA) Dan Mora",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL208001"
+        "diamond_id": "JUL208001",
+        "writer": "Tom Taylor",
+        "artrist": "Daniele Di Nicuolo",
+        "cover_artist": "Dan Mora"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -102,7 +113,8 @@
         "price": "$3.99",
         "creators": "(W) Al Ewing (A/CA) Simone Di Meo",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200871"
+        "diamond_id": "JUL200871",
+        "artist": "Ronald Lopez"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -111,7 +123,8 @@
         "price": "$3.99",
         "creators": "(W) Al Ewing (A) Simone Di Meo (CA) Toni Infante",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200872"
+        "diamond_id": "JUL200872",
+        "artist": "Alivin Jenkins"
       },
       {
         "publisher": "DARK HORSE COMICS",

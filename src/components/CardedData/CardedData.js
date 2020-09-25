@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import classNames from "classnames";
 
 import { useMountingEffect } from "../../customHooks";
+import {
+  sortAscendingByKey,
+  sortDescendingByKey,
+} from "../../utils/sortMethods";
 import { CardedDataProps } from "../../types";
 import { getColumns } from "../../utils/getColumns";
 
@@ -45,27 +49,12 @@ const CardedData = ({
     setColumns(columns);
   });
 
-  const sortAscendingByKey = (array, keyToSortBy) =>
-    array.sort((a, b) => {
-      if (a[keyToSortBy] < b[keyToSortBy]) return -1;
-      if (a[keyToSortBy] > b[keyToSortBy]) return 1;
-      return 0;
-    });
-
-  const sortDescendingByKey = (array, keyToSortBy) =>
-    array.sort((a, b) => {
-      if (a[keyToSortBy] > b[keyToSortBy]) return -1;
-      if (a[keyToSortBy] < b[keyToSortBy]) return 1;
-      return 0;
-    });
-
   const onFilter = (select, direction) => {
     const { dataKey, filterRule } = select;
 
     if (filterRule) {
-      const which = 0;
-      console.log("onFilter", sortedData[which][dataKey]);
-      const textToSearch = filterRule(sortedData[which][dataKey]);
+      const newData = filterRule([...sortedData], direction);
+      return sortData(newData);
     }
 
     const newData =
@@ -75,7 +64,7 @@ const CardedData = ({
         ? sortDescendingByKey([...sortedData], dataKey)
         : [...sortedData];
 
-    sortData(newData);
+    return sortData(newData);
   };
 
   const {
