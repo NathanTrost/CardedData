@@ -1,7 +1,3 @@
-import compareAsc from "date-fns/compareAsc";
-import compareDesc from "date-fns/compareDesc";
-import isValid from "date-fns/isValid";
-
 export const sortAscendingByKey = (array, key) =>
   array.sort((a, b) => {
     const first = a[key];
