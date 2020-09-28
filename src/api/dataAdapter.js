@@ -8,6 +8,7 @@ const acceptedRoles = {
   W: "writer",
 };
 
+/* eslint-disable */
 const restructuredRolesWithNames = dataArray.map((each) => {
   const { creators, ...rest } = each;
 
@@ -46,3 +47,5 @@ const restructuredRolesWithNames = dataArray.map((each) => {
 
   return { creators: creatorsArray, ...rest };
 });
+
+/* eslint-enable */

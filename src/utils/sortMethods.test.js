@@ -83,7 +83,7 @@ describe("sortByKey: ", () => {
   describe("If not provided a direction", () => {
     describe("should throw an error", () => {
       const thrownErrorMsg = (recievedVal) =>
-        `One of [\"ASC\",\"DESC\"] required, instead recieved \"${recievedVal}\"`;
+        `One of ["ASC","DESC"] required, instead recieved "${recievedVal}"`;
 
       test("if undefined", () => {
         expect(() => sortByKey("Luke", "Chewbacca")).toThrow(
