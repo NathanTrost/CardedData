@@ -16,29 +16,31 @@ export const sortByKey = (array, key, direction) => {
   return array.sort((a, b) => {
     const first = a[key];
     const second = b[key];
-
-    const dateComparison = sortIfDate(first, second, direction);
-    if (dateComparison) return dateComparison;
-
-    // Descending and Ascending rules are inverse from eachother
-    if (first < second) return sortAsc ? -1 : 1;
-    if (first > second) return sortAsc ? 1 : -1;
-
-    return 0;
+    return sortByDirection(first, second, sortAsc);
   });
 };
 
-export const sortIfDate = (first, second, direction) => {
+export const sortByDirection = (first, second, sortAsc) => {
+  const dateComparison = sortIfDate(first, second, sortAsc);
+  if (dateComparison) return dateComparison;
+
+  // Descending and Ascending rules are inverse from eachother
+  if (first < second) return sortAsc ? -1 : 1;
+  if (first > second) return sortAsc ? 1 : -1;
+
+  return 0;
+};
+
+export const sortIfDate = (first, second, sortAsc) => {
   const firstAsDate = new Date(first);
   const secondAsDate = new Date(second);
 
   if (isValid(firstAsDate) && isValid(secondAsDate)) {
     if (firstAsDate === secondAsDate) return 0;
-    if (direction === "ASC") {
+    if (sortAsc) {
       return compareAsc(new Date(first), new Date(second));
-    } else if (direction === "DESC") {
-      return compareDesc(new Date(first), new Date(second));
     }
+    return compareDesc(new Date(first), new Date(second));
   }
   return null;
 };

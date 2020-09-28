@@ -1,4 +1,4 @@
-import { sortByKey, sortIfDate } from "./sortMethods";
+import { sortByKey, sortByDirection, sortIfDate } from "./sortMethods";
 
 describe("sortByKey: ", () => {
   const data = [
@@ -29,7 +29,7 @@ describe("sortByKey: ", () => {
   ];
 
   describe("Ascending", () => {
-    test("should sort alphabetically from lowest to highest", () => {
+    test("should sort alphabetically from A-Z", () => {
       const newData = sortByKey(data, "firstName", "ASC");
 
       expect(newData).toHaveLength(3);
@@ -55,7 +55,7 @@ describe("sortByKey: ", () => {
   });
 
   describe("Descending", () => {
-    test("should sort alphabetically from highest to lowest", () => {
+    test("should sort alphabetically from Z-A", () => {
       const newData = sortByKey(data, "lastName", "DESC");
 
       expect(newData).toHaveLength(3);
@@ -100,7 +100,31 @@ describe("sortByKey: ", () => {
   });
 });
 
-describe("sortIfDates", () => {
+describe("sortByDirection: ", () => {
+  const xWing = "X-Wing";
+  const atatWalker = "AT-AT Walker";
+  describe("Ascending", () => {
+    describe("should sort alphabetically from A-Z", () => {
+      const compareAgainstXWing = sortByDirection(xWing, atatWalker, true);
+      expect(compareAgainstXWing).toBe(1);
+
+      const compareAgainstAT = sortByDirection(atatWalker, xWing, true);
+      expect(compareAgainstAT).toBe(-1);
+    });
+  });
+
+  describe("Descending", () => {
+    describe("should sort alphabetically from Z-A", () => {
+      const compareAgainstXWing = sortByDirection(xWing, atatWalker, false);
+      expect(compareAgainstXWing).toBe(-1);
+
+      const compareAgainstAT = sortByDirection(atatWalker, xWing, false);
+      expect(compareAgainstAT).toBe(1);
+    });
+  });
+});
+
+describe("sortIfDates: ", () => {
   const swrd = {
     menace: new Date("May 19, 1999"),
     clones: new Date("May 16, 2002"),
@@ -130,111 +154,137 @@ describe("sortIfDates", () => {
   const iso = (date) => date.toISOString();
 
   describe("Ascending", () => {
+    const sortAsc = true;
     describe("should sort from earliest to latest when provided", () => {
       test("short dates", () => {
-        const result1 = sortIfDate(short(swrd.hope), short(swrd.empire), "ASC");
+        const result1 = sortIfDate(
+          short(swrd.hope),
+          short(swrd.empire),
+          sortAsc
+        );
         expect(result1).toBe(-1);
         const result2 = sortIfDate(
           short(swrd.revenge),
           short(swrd.return),
-          "ASC"
+          sortAsc
         );
         expect(result2).toBe(1);
-        const result3 = sortIfDate(short(swrd.rise), short(swrd.rise), "ASC");
+        const result3 = sortIfDate(short(swrd.rise), short(swrd.rise), sortAsc);
         expect(result3).toBe(0);
       });
 
       test("long dates", () => {
-        const result1 = sortIfDate(long(swrd.revenge), long(swrd.solo), "ASC");
+        const result1 = sortIfDate(
+          long(swrd.revenge),
+          long(swrd.solo),
+          sortAsc
+        );
         expect(result1).toBe(-1);
-        const result2 = sortIfDate(long(swrd.force), long(swrd.empire), "ASC");
+        const result2 = sortIfDate(
+          long(swrd.force),
+          long(swrd.empire),
+          sortAsc
+        );
         expect(result2).toBe(1);
-        const result3 = sortIfDate(long(swrd.rogue), long(swrd.rogue), "ASC");
+        const result3 = sortIfDate(long(swrd.rogue), long(swrd.rogue), sortAsc);
         expect(result3).toBe(0);
       });
 
       test("ISO dates", () => {
-        const result1 = sortIfDate(iso(swrd.menace), iso(swrd.return), "ASC");
+        const result1 = sortIfDate(iso(swrd.menace), iso(swrd.return), sortAsc);
         expect(result1).toBe(1);
         const result2 = sortIfDate(
           iso(swrd.lastjedi),
           iso(swrd.revenge),
-          "ASC"
+          sortAsc
         );
         expect(result2).toBe(1);
-        const result3 = sortIfDate(iso(swrd.solo), iso(swrd.solo), "ASC");
+        const result3 = sortIfDate(iso(swrd.solo), iso(swrd.solo), sortAsc);
         expect(result3).toBe(0);
       });
 
       test("mixture of formatted dates", () => {
-        const result1 = sortIfDate(iso(swrd.revenge), long(swrd.rise), "ASC");
+        const result1 = sortIfDate(iso(swrd.revenge), long(swrd.rise), sortAsc);
         expect(result1).toBe(-1);
-        const result2 = sortIfDate(long(swrd.rogue), short(swrd.clones), "ASC");
+        const result2 = sortIfDate(
+          long(swrd.rogue),
+          short(swrd.clones),
+          sortAsc
+        );
         expect(result2).toBe(1);
-        const result3 = sortIfDate(short(swrd.menace), iso(swrd.menace), "ASC");
+        const result3 = sortIfDate(
+          short(swrd.menace),
+          iso(swrd.menace),
+          sortAsc
+        );
         expect(result3).toBe(0);
       });
     });
   });
 
   describe("Descending", () => {
+    const sortAsc = false;
     describe("should sort from latest to earliest when provided", () => {
       test("short dates", () => {
         const result1 = sortIfDate(
           short(swrd.hope),
           short(swrd.empire),
-          "DESC"
+          sortAsc
         );
         expect(result1).toBe(1);
         const result2 = sortIfDate(
           short(swrd.solo),
           short(swrd.return),
-          "DESC"
+          sortAsc
         );
         expect(result2).toBe(-1);
-        const result3 = sortIfDate(short(swrd.rise), short(swrd.rise), "DESC");
+        const result3 = sortIfDate(short(swrd.rise), short(swrd.rise), sortAsc);
         expect(result3).toBe(0);
       });
 
       test("long dates ", () => {
-        const result1 = sortIfDate(long(swrd.revenge), long(swrd.rise), "DESC");
+        const result1 = sortIfDate(
+          long(swrd.revenge),
+          long(swrd.rise),
+          sortAsc
+        );
         expect(result1).toBe(1);
         const result2 = sortIfDate(
           long(swrd.lastjedi),
           long(swrd.empire),
-          "DESC"
+          sortAsc
         );
         expect(result2).toBe(-1);
-        const result3 = sortIfDate(long(swrd.rogue), long(swrd.rogue), "DESC");
+        const result3 = sortIfDate(long(swrd.rogue), long(swrd.rogue), sortAsc);
         expect(result3).toBe(0);
       });
 
       test("ISO dates", () => {
-        const result1 = sortIfDate(iso(swrd.hope), iso(swrd.menace), "DESC");
+        const result1 = sortIfDate(iso(swrd.hope), iso(swrd.menace), sortAsc);
         expect(result1).toBe(1);
         const result2 = sortIfDate(
           iso(swrd.lastjedi),
           iso(swrd.revenge),
-          "DESC"
+          sortAsc
         );
         expect(result2).toBe(-1);
-        const result3 = sortIfDate(iso(swrd.rise), iso(swrd.rise), "DESC");
+        const result3 = sortIfDate(iso(swrd.rise), iso(swrd.rise), sortAsc);
         expect(result3).toBe(0);
       });
 
       test("mixture of formatted dates", () => {
-        const result1 = sortIfDate(iso(swrd.menace), long(swrd.solo), "DESC");
+        const result1 = sortIfDate(iso(swrd.menace), long(swrd.solo), sortAsc);
         expect(result1).toBe(1);
         const result2 = sortIfDate(
           long(swrd.rogue),
           short(swrd.return),
-          "DESC"
+          sortAsc
         );
         expect(result2).toBe(-1);
         const result3 = sortIfDate(
           iso(swrd.revenge),
           short(swrd.revenge),
-          "DESC"
+          sortAsc
         );
         expect(result3).toBe(0);
       });
@@ -243,16 +293,16 @@ describe("sortIfDates", () => {
 
   describe("When provided non-dates", () => {
     test("should return as null", () => {
-      const decending = sortIfDate("Millenium Falcon", "X-Wing", "DESC");
+      const decending = sortIfDate("Millenium Falcon", "X-Wing", false);
       expect(decending).toBe(null);
 
-      const decendingWithOneDate = sortIfDate("May 14, 1944", "X-Wing", "DESC");
+      const decendingWithOneDate = sortIfDate("May 14, 1944", "X-Wing", false);
       expect(decendingWithOneDate).toBe(null);
 
-      const ascending = sortIfDate("Millenium Falcon", "X-Wing", "ASC");
+      const ascending = sortIfDate("Millenium Falcon", "X-Wing", true);
       expect(ascending).toBe(null);
 
-      const ascendingWithOneDate = sortIfDate("May 14, 1944", "X-Wing", "ASC");
+      const ascendingWithOneDate = sortIfDate("May 14, 1944", "X-Wing", true);
       expect(ascendingWithOneDate).toBe(null);
     });
   });
