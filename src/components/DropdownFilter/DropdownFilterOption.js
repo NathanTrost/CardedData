@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { DropdownItem } from "../styled/Dropdown";
+import { DropdownFilterOptionProps } from "../../types";
+import { StyledDropdownItem } from "../styled/Dropdown";
 
 const DropdownFilterOption = ({ focus, index, onSelect, setFocus, item }) => {
   const itemRef = useRef(null);
@@ -14,7 +15,7 @@ const DropdownFilterOption = ({ focus, index, onSelect, setFocus, item }) => {
   };
 
   return (
-    <DropdownItem
+    <StyledDropdownItem
       data-testid="dropdown-item"
       data-item={item}
       id={`dropdown__item`}
@@ -25,8 +26,10 @@ const DropdownFilterOption = ({ focus, index, onSelect, setFocus, item }) => {
       tabIndex={focus ? 0 : -1}
     >
       {item.title}
-    </DropdownItem>
+    </StyledDropdownItem>
   );
 };
+
+DropdownFilterOption.propTypes = DropdownFilterOptionProps;
 
 export default DropdownFilterOption;

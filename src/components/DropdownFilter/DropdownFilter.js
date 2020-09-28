@@ -5,13 +5,13 @@ import { useOutsideClick, useKeyedNavigation } from "../../customHooks";
 
 import DropdownFilterOption from "./DropdownFilterOption";
 
-import { DropdownBtn } from "../styled/Buttons";
 import {
-  DropdownContainer,
-  Dropdown,
-  DropdownLabel,
-  DropdownListContainer,
-  DropdownList,
+  StyledDropdownBtn,
+  StyledDropdownContainer,
+  StyledDropdown,
+  StyledDropdownLabel,
+  StyledDropdownListContainer,
+  StyledDropdownList,
 } from "../styled/Dropdown";
 
 const DropdownFilter = ({ columns, onFilter }) => {
@@ -37,39 +37,48 @@ const DropdownFilter = ({ columns, onFilter }) => {
 
   const onSelect = (selected) => {
     setSelected(selected);
-    onFilter(selected);
+    onFilter(selected, "ASC");
     toggleDropdown();
   };
 
   return (
-    <DropdownContainer
+    <StyledDropdownContainer
       className="dropdown-container"
-      data-testid="dropdown-container"
+      data-testid={`dropdown-container`}
     >
-      <Dropdown
-        ariaLabel="dropdown"
-        data-testid="dropdown"
+      <StyledDropdown
+        ariaLabel={`dropdown`}
+        className="dropdown"
+        data-testid={`dropdown`}
         id={`dropdown`}
         ref={dropdownRef}
       >
-        <DropdownLabel id="dropdown__label">Filter By</DropdownLabel>
-        <DropdownBtn
+        <StyledDropdownLabel
+          className="dropdown-label"
+          data-testid={`dropdown-label`}
+        >
+          Filter By
+        </StyledDropdownLabel>
+        <StyledDropdownBtn
           alt={selected.title}
           aria-expanded={open}
           aria-haspopup="listbox"
           aria-labelledby="dropdown__label"
-          id={`dropdown__trigger`}
-          data-testid="dropdown-trigger"
+          className="dropdown-trigger"
+          data-testid={`dropdown-trigger`}
           onClick={toggleDropdown}
         >
           {selected.title || "Select..."}
-        </DropdownBtn>
-        <DropdownListContainer
-          id={`dropdown__content`}
-          data-testid="dropdown-content"
-          style={{ position: "absolute", display: open ? "block" : "none" }}
+        </StyledDropdownBtn>
+        <StyledDropdownListContainer
+          className="dropdown-content"
+          data-testid={`dropdown-content`}
+          open={open}
         >
-          <DropdownList>
+          <StyledDropdownList
+            className="dropdown-list"
+            data-testid={`dropdown-list`}
+          >
             {options.map((each, index) => {
               const titleKey = `${index}-${each.id}`;
               return (
@@ -83,10 +92,10 @@ const DropdownFilter = ({ columns, onFilter }) => {
                 </DropdownFilterOption>
               );
             })}
-          </DropdownList>
-        </DropdownListContainer>
-      </Dropdown>
-    </DropdownContainer>
+          </StyledDropdownList>
+        </StyledDropdownListContainer>
+      </StyledDropdown>
+    </StyledDropdownContainer>
   );
 };
 

@@ -1,17 +1,17 @@
 import React from "react";
-import { HeaderLabelProps } from "../../types";
-import { StyledColumnLabel } from "../styled/Label";
+import { ColumnLabelProps } from "../../types";
+import { StyledColumnLabel } from "../styled/Grid";
 
 const ColumnLabel = ({ children, onFilter }) => (
   <StyledColumnLabel
-    className="columnLabel"
-    data-testid={`columnLabel`}
+    className="column-label"
+    data-testid={`column-label`}
     onClick={onFilter}
   >
     {children}
   </StyledColumnLabel>
 );
 
-ColumnLabel.propTypes = HeaderLabelProps;
+ColumnLabel.propTypes = ColumnLabelProps;
 
 export default ColumnLabel;

@@ -27,13 +27,23 @@ const filterProps = {
   onFilter: func,
 };
 
-export const HeaderProps = filterProps;
-
 export const DropdownFilterProps = filterProps;
 
-export const HeaderLabelProps = {
+export const DropdownFilterOptionProps = {
+  focus: bool.isRequired,
+  index: number.isRequired,
+  onSelect: func.isRequired,
+  setFocus: func.isRequired,
+  item: shape({
+    title: string.isRequired,
+  }).isRequired,
+};
+
+export const ColumnLabelsProps = filterProps;
+
+export const ColumnLabelProps = {
   children: oneOfType([string, node]).isRequired,
-  onFilter: func,
+  onFilter: func.isRequired,
 };
 
 export const CardedDataProps = {
@@ -42,7 +52,7 @@ export const CardedDataProps = {
   customColumns: oneOfType([
     arrayOf(
       shape({
-        dataIndex: string,
+        dataKey: string,
         id: string.isRequired,
         position: number.isRequired,
         title: string,

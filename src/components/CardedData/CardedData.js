@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import classNames from "classnames";
+
 import { useMountingEffect } from "../../customHooks";
+import { sortByKey } from "../../utils/sortMethods";
 import { CardedDataProps } from "../../types";
 import { getColumns } from "../../utils/getColumns";
 
@@ -8,17 +11,11 @@ import {
   StyledHeaderWrapper,
   StyledItemWrapper,
   StyledItemsWrapper,
+  StyledCellWrapper,
 } from "../styled/Grid";
 
 import ColumnLabels from "../ColumnLabels";
 import DropdownFilter from "../DropdownFilter";
-
-const defaultLayoutRules = {
-  displayColumnLabels: true,
-  displayFilterDropdown: false,
-  gridType: "columnsAsGrid",
-  useGrid: true,
-};
 
 const CardedData = ({
   columnOverwrite = false,
@@ -26,9 +23,17 @@ const CardedData = ({
   customHeader = false,
   customMethods,
   data,
-  layout = defaultLayoutRules,
+  layout = {},
 }) => {
+  const defaultLayoutRules = {
+    displayColumnLabels: true,
+    displayFilterDropdown: false,
+    gridType: "columnsAsGrid",
+    useGrid: true,
+  };
+
   const [columns, setColumns] = useState([]);
+  const [sortedData, sortData] = useState(data);
   const layoutRules = Object.assign({}, defaultLayoutRules, layout);
 
   useMountingEffect(() => {
@@ -41,8 +46,17 @@ const CardedData = ({
     setColumns(columns);
   });
 
-  const onFilter = (select) => {
-    console.log(select);
+  const onFilter = (select, direction) => {
+    const { dataKey, filterRule } = select;
+
+    if (filterRule) {
+      // Override general sort if filterRule is provided
+      const newData = filterRule([...sortedData], direction);
+      return sortData(newData);
+    }
+
+    const newData = sortByKey([...sortedData], dataKey, direction);
+    return sortData(newData);
   };
 
   const {
@@ -55,16 +69,15 @@ const CardedData = ({
 
   const shouldDisplayColumnLabels =
     gridType === "columnsAsGrid" && displayColumnLabels;
-  console.log("gridType", gridType);
   return (
     <StyledAppWrapper className="wrapper" data-testid={`wrapper`}>
       <StyledHeaderWrapper
         className="header_wrapper"
         data-testid={`header-wrapper`}
       >
-        <div className="header_wrapper-top" data-testid={"header_wrapper-top"}>
+        <div className="header_wrapper-top" data-testid={`header_wrapper-top`}>
           {customHeader && (
-            <div className="custom_header" data-testid={"custom-header"}>
+            <div className="custom_header" data-testid={`custom-header`}>
               {customHeader}
             </div>
           )}
@@ -82,7 +95,7 @@ const CardedData = ({
         useGrid={useGrid && gridType === "itemsAsGrid"}
         gridLength={gridLength}
       >
-        {data.map((record, index) => {
+        {sortedData.map((record, index) => {
           const itemKey = `${index}-item-${record.id}`;
           return (
             <StyledItemWrapper
@@ -96,20 +109,13 @@ const CardedData = ({
               {columns.map((column, columnIndex) => {
                 const columnKey = `${columnIndex}-${column.id}`;
                 return (
-                  <div
-                    data-testid={column.id}
+                  <StyledCellWrapper
+                    className={classNames(["cell-wrapper", column.className])}
+                    data-testid={`cell-wrapper-${column.id}`}
                     key={columnKey}
-                    className={column.className}
-                    style={{
-                      float: "left",
-                      backgroundColor: "#DDD",
-                      boxSizing: "border-box",
-                      padding: "5px",
-                      margin: "5px",
-                    }}
                   >
                     {column.render(record[column.id], record)}
-                  </div>
+                  </StyledCellWrapper>
                 );
               })}
             </StyledItemWrapper>
@@ -121,4 +127,5 @@ const CardedData = ({
 };
 
 CardedData.propTypes = CardedDataProps;
+
 export default CardedData;
