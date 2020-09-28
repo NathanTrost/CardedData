@@ -11,7 +11,7 @@ export const deriveColumnsFromData = (data) => {
   const uniqueKeys = [...new Set(flattenedKeys)];
   return uniqueKeys.map((each, key) => {
     const column = {
-      dataIndex: each,
+      dataKey: each,
       id: each,
       position: (key + 1) * 100,
       title: formatKeyForTitle(each),

@@ -8,7 +8,10 @@
         "price": "$24.99",
         "creators": "(W) Ben Queen (A/CA) Joe Todd-Stanton",
         "release_date": "2020-09-02",
-        "diamond_id": "APR201332"
+        "diamond_id": "APR201332",
+        "writer": "Ben Queen",
+        "artist": "Joe Todd-Stanton",
+        "cover_artist": "Joe Todd-Stanton"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -18,7 +21,10 @@
         "creators": "(W) Jordie Bellaire (A/CA) David Lopez",
         "release_date": "2020-09-02",
         "diamond_id": "JUL200893",
-        "cover": "This is a cover"
+        "cover": "This is a cover",
+        "writer": "Jordie Bellaire",
+        "artist": "David Lopez",
+        "cover_artist": "David Lopez"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -27,7 +33,10 @@
         "price": "$3.99",
         "creators": "(W) Jordie Bellaire (A) David Lopez (CA) Marguerite Sauvage",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200894"
+        "diamond_id": "JUL200894",
+        "writer": "Jordie Bellaire",
+        "artist": "David Lopez",
+        "cover_artist": "Marguerite Sauvage"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -36,7 +45,10 @@
         "price": "$3.99",
         "creators": "(W) Jordie Bellaire (A) David Lopez (CA) Becca Carey",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200895"
+        "diamond_id": "JUL200895",
+        "writer": "Jordie Bellaire",
+        "artist": "David Lopez",
+        "cover_artist": "Becca Carey"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -45,7 +57,9 @@
         "price": "$3.99",
         "creators": "(W) Maxwell Prince (A/CA) Tyler Jenkins",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200922"
+        "diamond_id": "JUL200922",
+        "writer": "Maxwell Prince",
+        "artist": "Tyler Jenkins"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -54,7 +68,10 @@
         "price": "$3.99",
         "creators": "(W) Maxwell Prince (A) Tyler Jenkins (CA) Martin Morazzo",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200923"
+        "diamond_id": "JUL200923",
+        "writer": "Maxwell Prince",
+        "artist": "Tyler Jenkins",
+        "cover_artist": "Martin Morazzo"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -63,7 +80,10 @@
         "price": "$16.99",
         "creators": "(W) Ryan Parrott (A) Daniele Nicuolo (CA) Jamal Campbell",
         "release_date": "2020-09-02",
-        "diamond_id": "MAR201372"
+        "diamond_id": "MAR201372",
+        "writer": "Ryan Parrot",
+        "artist": "Daniele Nicuolo",
+        "cover_artist": "Jamal Campbell"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -72,7 +92,10 @@
         "price": "$3.99",
         "creators": "(W) Tom Taylor (A) Daniele Di Nicuolo (CA) Dan Mora",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL208001"
+        "diamond_id": "JUL208001",
+        "writer": "Tom Taylor",
+        "artist": "Daniele Di Nicuolo",
+        "cover_artist": "Dan Mora"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -90,7 +113,8 @@
         "price": "$3.99",
         "creators": "(W) Al Ewing (A/CA) Simone Di Meo",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200871"
+        "diamond_id": "JUL200871",
+        "artist": "Simone Di Meo"
       },
       {
         "publisher": "BOOM! STUDIOS",
@@ -99,7 +123,8 @@
         "price": "$3.99",
         "creators": "(W) Al Ewing (A) Simone Di Meo (CA) Toni Infante",
         "release_date": "2020-09-02",
-        "diamond_id": "JUL200872"
+        "diamond_id": "JUL200872",
+        "artist": "Simone Di Meo"
       },
       {
         "publisher": "DARK HORSE COMICS",

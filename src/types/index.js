@@ -52,7 +52,7 @@ export const CardedDataProps = {
   customColumns: oneOfType([
     arrayOf(
       shape({
-        dataIndex: string,
+        dataKey: string,
         id: string.isRequired,
         position: number.isRequired,
         title: string,
