@@ -70,7 +70,7 @@
         "release_date": "2020-09-02",
         "diamond_id": "JUL200923",
         "writer": "Maxwell Prince",
-        "artrist": "Tyler Jenkins",
+        "artist": "Tyler Jenkins",
         "cover_artist": "Martin Morazzo"
       },
       {
@@ -82,7 +82,7 @@
         "release_date": "2020-09-02",
         "diamond_id": "MAR201372",
         "writer": "Ryan Parrot",
-        "artrist": "Daniele Nicuolo",
+        "artist": "Daniele Nicuolo",
         "cover_artist": "Jamal Campbell"
       },
       {
@@ -94,7 +94,7 @@
         "release_date": "2020-09-02",
         "diamond_id": "JUL208001",
         "writer": "Tom Taylor",
-        "artrist": "Daniele Di Nicuolo",
+        "artist": "Daniele Di Nicuolo",
         "cover_artist": "Dan Mora"
       },
       {
@@ -122,8 +122,7 @@
         "title": "WE ONLY FIND THEM WHEN THEYRE DEAD #1 CVR B INFANTE VAR",
         "price": "$3.99",
         "creators": "(W) Al Ewing (A) Simone Di Meo (CA) Toni Infante",
-
-        "release_date": "September 9th 2020",
+        "release_date": "2020-09-02",
         "diamond_id": "JUL200872",
         "artist": "Simone Di Meo"
       },

@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 
 import { useMountingEffect } from "../../customHooks";
-import {
-  sortAscendingByKey,
-  sortDescendingByKey,
-} from "../../utils/sortMethods";
+import { sortByKey } from "../../utils/sortMethods";
 import { CardedDataProps } from "../../types";
 import { getColumns } from "../../utils/getColumns";
 
@@ -53,17 +50,12 @@ const CardedData = ({
     const { dataKey, filterRule } = select;
 
     if (filterRule) {
+      // Override general sort if filterRule is provided
       const newData = filterRule([...sortedData], direction);
       return sortData(newData);
     }
 
-    const newData =
-      direction === "ascending"
-        ? sortAscendingByKey([...sortedData], dataKey)
-        : direction === "descending"
-        ? sortDescendingByKey([...sortedData], dataKey)
-        : [...sortedData];
-
+    const newData = sortByKey([...sortedData], dataKey, direction);
     return sortData(newData);
   };
 
@@ -119,7 +111,7 @@ const CardedData = ({
                 return (
                   <StyledCellWrapper
                     className={classNames(["cell-wrapper", column.className])}
-                    data-testid={`cell-wrapper`}
+                    data-testid={`cell-wrapper-${column.id}`}
                     key={columnKey}
                   >
                     {column.render(record[column.id], record)}
