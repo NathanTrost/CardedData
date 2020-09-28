@@ -14,7 +14,7 @@ const ColumnLabels = ({ columns, onFilter }) => {
       {columns.map((each, index) => {
         const titleKey = `${index}-${each.id}`;
         return (
-          <ColumnLabel key={titleKey} onFilter={onFilter}>
+          <ColumnLabel key={titleKey} onFilter={onFilter} item={each}>
             {each.title}
           </ColumnLabel>
         );
