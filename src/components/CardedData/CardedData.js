@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 
 import { useMountingEffect } from "../../customHooks";
+import { sortByKey } from "../../utils/sortMethods";
 import { CardedDataProps } from "../../types";
 import { getColumns } from "../../utils/getColumns";
 
@@ -32,6 +33,7 @@ const CardedData = ({
   };
 
   const [columns, setColumns] = useState([]);
+  const [sortedData, sortData] = useState(data);
   const layoutRules = Object.assign({}, defaultLayoutRules, layout);
 
   useMountingEffect(() => {
@@ -44,9 +46,17 @@ const CardedData = ({
     setColumns(columns);
   });
 
-  const onFilter = (select) => {
-    console.log(select);
-    return;
+  const onFilter = (select, direction) => {
+    const { dataKey, filterRule } = select;
+
+    if (filterRule) {
+      // Override general sort if filterRule is provided
+      const newData = filterRule([...sortedData], direction);
+      return sortData(newData);
+    }
+
+    const newData = sortByKey([...sortedData], dataKey, direction);
+    return sortData(newData);
   };
 
   const {
@@ -59,7 +69,6 @@ const CardedData = ({
 
   const shouldDisplayColumnLabels =
     gridType === "columnsAsGrid" && displayColumnLabels;
-  console.log("gridType", gridType);
   return (
     <StyledAppWrapper className="wrapper" data-testid={`wrapper`}>
       <StyledHeaderWrapper
@@ -86,7 +95,7 @@ const CardedData = ({
         useGrid={useGrid && gridType === "itemsAsGrid"}
         gridLength={gridLength}
       >
-        {data.map((record, index) => {
+        {sortedData.map((record, index) => {
           const itemKey = `${index}-item-${record.id}`;
           return (
             <StyledItemWrapper
@@ -102,7 +111,7 @@ const CardedData = ({
                 return (
                   <StyledCellWrapper
                     className={classNames(["cell-wrapper", column.className])}
-                    data-testid={`cell-wrapper`}
+                    data-testid={`cell-wrapper-${column.id}`}
                     key={columnKey}
                   >
                     {column.render(record[column.id], record)}
