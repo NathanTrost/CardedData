@@ -70,7 +70,7 @@ const CardedData = ({
   const shouldDisplayColumnLabels =
     gridType === "columnsAsGrid" && displayColumnLabels;
   return (
-    <StyledAppWrapper className="wrapper" data-testid={`wrapper`}>
+    <StyledAppWrapper className="app-wrapper" data-testid={`app-wrapper`}>
       <StyledHeaderWrapper
         className="header_wrapper"
         data-testid={`header-wrapper`}

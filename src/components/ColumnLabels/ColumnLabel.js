@@ -17,8 +17,8 @@ const ColumnLabel = ({ children, item, onFilter }) => {
       data-testid={`column-label-wrapper`}
     >
       <StyledColumnLabelCell
-        className="column-label"
-        data-testid={`column-label`}
+        className="column-label-cell"
+        data-testid={`column-label-cell`}
         onClick={onFilter}
       >
         {children}

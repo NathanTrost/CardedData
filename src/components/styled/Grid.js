@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { setRem, setShadow } from "./utils";
 
-const itemSpacing = "20px";
+const itemSpacing = "16px";
 const itemBg = `--itemBg: #eee; 
 background-color: var(--itemBg);`;
 
@@ -11,12 +11,12 @@ margin: ${setRem(4)};
 `;
 
 const containerWrapper = `  
-padding: 8px ${itemSpacing};
+padding: 4px ${itemSpacing};
 box-sizing: border-box;
 `;
 
 const itemWrapper = `
-padding: 16px 0;
+padding: 8px 0;
 boxsizing: border-box;
 `;
 
@@ -30,13 +30,13 @@ const doGridStyling = (useGrid, length) => {
 };
 
 export const StyledAppWrapper = styled.div`
-  padding: 10px;
+  padding: 8px;
   box-sizing: border-box;
   display: block;
 `;
 
 export const StyledHeaderWrapper = styled.div`
-  padding: 10px;
+  padding: 8px 0px;
 `;
 
 export const StyledColumnLabelsWrapper = styled.div`
@@ -53,6 +53,7 @@ export const StyledColumnLabelCell = styled.div`
   ${cellSpacing}
   font-weight: bold;
   text-align: center;
+  display: inline-flex;
   ${itemBg}
 `;
 
