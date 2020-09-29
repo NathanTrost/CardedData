@@ -2,6 +2,24 @@ import styled from "styled-components";
 import { setRem, setShadow } from "./utils";
 
 const itemSpacing = "20px";
+const itemBg = `--itemBg: #eee; 
+background-color: var(--itemBg);`;
+
+const cellSpacing = `
+padding: 4px 4px 12px 4px;
+margin: ${setRem(4)};
+`;
+
+const containerWrapper = `  
+padding: 8px ${itemSpacing};
+box-sizing: border-box;
+`;
+
+const itemWrapper = `
+padding: 16px 0;
+boxsizing: border-box;
+`;
+
 const doGridStyling = (useGrid, length) => {
   return (
     useGrid &&
@@ -22,28 +40,30 @@ export const StyledHeaderWrapper = styled.div`
 `;
 
 export const StyledColumnLabelsWrapper = styled.div`
-  padding: 8px ${itemSpacing};
-  box-sizing: border-box;
+  ${containerWrapper}
   text-align: left;
   ${(props) => doGridStyling(true, props.gridLength)}
 `;
 
-export const StyledColumnLabel = styled.label`
+export const StyledColumnLabelWrapper = styled.div`
+  ${itemWrapper}
+`;
+
+export const StyledColumnLabelCell = styled.div`
+  ${cellSpacing}
   font-weight: bold;
-  margin-bottom: ${setRem(4)};
   text-align: center;
+  ${itemBg}
 `;
 
 export const StyledItemsWrapper = styled.div`
-  padding: 8px ${itemSpacing};
-  box-sizing: border-box;
+  ${containerWrapper}
   ${(props) => doGridStyling(props.useGrid, props.gridLength)}
 `;
 
 export const StyledItemWrapper = styled.div`
-  padding: 16px 0;
+  ${itemWrapper}
   border-radius: 2px;
-  boxsizing: border-box;
 
   ${setShadow()}
   ${(props) => {
@@ -58,9 +78,7 @@ export const StyledItemWrapper = styled.div`
   }}
 `;
 
-export const StyledCellWrapper = styled.div`
-  --itemBg: #eee;
-  padding: 16px 16px 24px 16px;
-  margin: 4px;
-  background-color: var(--itemBg);
+export const StyledItemCell = styled.div`
+  ${cellSpacing}
+  ${itemBg}
 `;

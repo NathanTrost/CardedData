@@ -11,7 +11,7 @@ import {
   StyledHeaderWrapper,
   StyledItemWrapper,
   StyledItemsWrapper,
-  StyledCellWrapper,
+  StyledItemCell,
 } from "../styled/Grid";
 
 import ColumnLabels from "../ColumnLabels";
@@ -109,13 +109,13 @@ const CardedData = ({
               {columns.map((column, columnIndex) => {
                 const columnKey = `${columnIndex}-${column.id}`;
                 return (
-                  <StyledCellWrapper
-                    className={classNames(["cell-wrapper", column.className])}
-                    data-testid={`cell-wrapper-${column.id}`}
+                  <StyledItemCell
+                    className={classNames(["item-cell", column.className])}
+                    data-testid={`item-cell-${column.id}`}
                     key={columnKey}
                   >
                     {column.render(record[column.id], record)}
-                  </StyledCellWrapper>
+                  </StyledItemCell>
                 );
               })}
             </StyledItemWrapper>
