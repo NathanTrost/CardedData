@@ -1,0 +1,111 @@
+{
+  "data": {
+    "starWarsCharacters": [
+      {
+        "first_name": "Luke",
+        "last_name": "Skywalker",
+        "actor_first_name": "Mark",
+        "actor_last_name": "Hamill",
+        "home_planet": "Tatooine"
+      },
+      {
+        "first_name": "Han",
+        "last_name": "Solo",
+        "actor_first_name": "Harrison",
+        "actor_last_name": "Ford",
+        "home_planet": "Corellia"
+      },
+      {
+        "first_name": "Leia",
+        "last_name": "Organa",
+        "actor_first_name": "Carrie",
+        "actor_last_name": "Fisher",
+        "home_planet": "Alderaan"
+      },
+      {
+        "first_name": "Rey",
+        "last_name": "Palpatine",
+        "actor_first_name": "Daisy",
+        "actor_last_name": "Ridley",
+        "home_planet": "Jakku"
+      },
+      {
+        "first_name": "Finn",
+        "alias": "FN-2187",
+        "actor_first_name": "John",
+        "actor_last_name": "Boyega",
+        "home_planet": "StarKiller Base"
+      },
+      {
+        "first_name": "Poe",
+        "last_name": "Dameron",
+        "actor_first_name": "Oscar",
+        "actor_last_name": "Isaac",
+        "home_planet": "Kijimi"
+      },
+      {
+        "first_name": "Obi-Wan",
+        "last_name": "Kenobi",
+        "alias": "Ben Kenobi",
+        "actor_first_name": "Alec",
+        "actor_last_name": "Guiness",
+        "home_planet": "Stewjon"
+      },
+      {
+        "first_name": "Anakin",
+        "last_name": "Skywalker",
+        "alias": "Darth Vader",
+        "actor_first_name": "Hayden",
+        "actor_last_name": "Christensen",
+        "home_planet": "Tatooine"
+      },
+      {
+        "first_name": "Padme",
+        "last_name": "Amadala",
+        "actor_first_name": "Natalie",
+        "actor_last_name": "Portman",
+        "home_planet": "Naboo"
+      },
+      {
+        "first_name": "Sheev",
+        "last_name": "Palpatine",
+        "alias": "Darth Sidious",
+        "actor_first_name": "Ian",
+        "actor_last_name": "McDiarmid",
+        "home_planet": "Naboo"
+      },
+      {
+        "first_name": "Ben",
+        "last_name": "Solo",
+        "alias": "Kylo Ren",
+        "actor_first_name": "Adam",
+        "actor_last_name": "Driver"
+      },
+      {
+        "first_name": "Lando",
+        "last_name": "Calrissian",
+        "actor_first_name": "Billy Dee",
+        "actor_last_name": "Williams"
+      },
+      {
+        "first_name": "C3PO",
+        "actor_first_name": "Anthony",
+        "actor_last_name": "Daniels",
+        "home_planet": "Tatooine"
+      },
+      {
+        "first_name": "R2D2",
+        "alias": "R2",
+        "actor_first_name": "Kenny",
+        "actor_last_name": "Baker"
+      },
+      {
+        "first_name": "Chewbacca",
+        "last_name": "Chewy",
+        "actor_first_name": "Peter",
+        "actor_last_name": "Mayhew",
+        "home_planet": "Kashyyk"
+      }
+    ]
+  }
+}

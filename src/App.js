@@ -1,7 +1,7 @@
 import React from "react";
 import CardedData from "./components/CardedData";
 import GlobalStyles from "./components/styled/GlobalStyles";
-const { comics } = require("./api/staticMockApi.json").data;
+const { comics } = require("./api/comics.json").data;
 
 function App() {
   return (

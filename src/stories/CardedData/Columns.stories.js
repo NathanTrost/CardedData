@@ -1,7 +1,12 @@
 import React from "react";
 import CardedData from "../../components/CardedData";
 
-const { comics } = require("../../api/staticMockApi.json").data;
+const { comics } = require("../../api/comics.json").data;
+
+const {
+  starWarsCharacters,
+} = require("../../api/starWarsCharacters.json").data;
+
 const {
   getComicBookColumns,
 } = require("../../mockColumnDefinitions/comicBookColumns");
@@ -31,4 +36,12 @@ WithMergedCustomConfig.args = {
   customColumns: getComicBookColumns,
   data: comics,
   columnOverwrite: true,
+};
+
+export const DifferentDataWithFilter = Template.bind({});
+DifferentDataWithFilter.args = {
+  data: starWarsCharacters,
+  layout: {
+    displayFilterDropdown: true,
+  },
 };
