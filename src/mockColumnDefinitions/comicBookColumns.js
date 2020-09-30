@@ -1,5 +1,5 @@
 import React from "react";
-import filterLastNameFirst from "./filterLastNameFirst";
+import sortLastNameFirst from "./sortLastNameFirst";
 
 /* eslint-disable react/no-multi-comp */
 /* eslint-disable react/display-name */
@@ -35,8 +35,8 @@ export function getComicBookColumns(commonFunctions) {
       title: "Artist",
       className: "col-artist",
       dataKey: "artist",
-      filterRule: (dataArray, direction) =>
-        filterLastNameFirst(dataArray, direction),
+      sortRule: (dataArray, direction) =>
+        sortLastNameFirst(dataArray, direction),
       render: (text, record) => <div>{text}</div>,
     },
     // {

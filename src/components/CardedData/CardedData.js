@@ -47,11 +47,11 @@ const CardedData = ({
   });
 
   const onFilter = (select, direction) => {
-    const { dataKey, filterRule } = select;
+    const { dataKey, sortRule } = select;
 
-    if (filterRule) {
-      // Override general sort if filterRule is provided
-      const newData = filterRule([...sortedData], direction);
+    if (sortRule) {
+      // Override general sort if sortRule is provided
+      const newData = sortRule([...sortedData], direction);
       return sortData(newData);
     }
 
