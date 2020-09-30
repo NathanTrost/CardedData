@@ -11,12 +11,10 @@ describe("CardedData", () => {
     const itemWrapper = itemsWrapper.firstChild;
     expect(itemWrapper).toBeTruthy();
 
-    expect(queryByTestId(itemWrapper, "cell-wrapper-title")).toBeTruthy();
-    expect(queryByTestId(itemWrapper, "cell-wrapper-publisher")).toBeTruthy();
-    expect(queryByTestId(itemWrapper, "cell-wrapper-description")).toBeTruthy();
-    expect(
-      queryByTestId(itemWrapper, "cell-wrapper-release_date")
-    ).toBeTruthy();
-    expect(queryByTestId(itemWrapper, "cell-wrapper-creators")).toBeTruthy();
+    expect(queryByTestId(itemWrapper, "item-cell-title")).toBeTruthy();
+    expect(queryByTestId(itemWrapper, "item-cell-publisher")).toBeTruthy();
+    expect(queryByTestId(itemWrapper, "item-cell-description")).toBeTruthy();
+    expect(queryByTestId(itemWrapper, "item-cell-release_date")).toBeTruthy();
+    expect(queryByTestId(itemWrapper, "item-cell-creators")).toBeTruthy();
   });
 });

@@ -5,7 +5,7 @@ import {
   StyledColumnLabelWrapper,
 } from "../styled/Grid";
 
-import { StyledSvg } from "../styled/Svg";
+import { StyledSortArrowSvg } from "../styled/Svg";
 
 const ColumnLabel = ({ children, item, onFilter }) => {
   const sortAscend = () => onFilter(item, "ASC");
@@ -19,17 +19,21 @@ const ColumnLabel = ({ children, item, onFilter }) => {
       <StyledColumnLabelCell
         className="column-label-cell"
         data-testid={`column-label-cell`}
-        onClick={onFilter}
       >
-        {children}
+        <div className="column-label" data-testid={`column-label`}>
+          {children}
+        </div>
         <span>
-          <StyledSvg data-testid={`svg-arrow-up`} onClick={sortAscend}>
+          <StyledSortArrowSvg data-testid={`svg-arrow-up`} onClick={sortAscend}>
             <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
-          </StyledSvg>
+          </StyledSortArrowSvg>
 
-          <StyledSvg data-testid={`svg-arrow-down`} onClick={sortDescend}>
+          <StyledSortArrowSvg
+            data-testid={`svg-arrow-down`}
+            onClick={sortDescend}
+          >
             <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
-          </StyledSvg>
+          </StyledSortArrowSvg>
         </span>
       </StyledColumnLabelCell>
     </StyledColumnLabelWrapper>

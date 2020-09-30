@@ -2,22 +2,24 @@ import styled from "styled-components";
 import { setRem, setShadow } from "./utils";
 
 const itemSpacing = "16px";
-const itemBg = `--itemBg: #eee; 
-background-color: var(--itemBg);`;
+const itemBg = ` 
+background-color: var(--itemBg);
+`;
 
 const cellSpacing = `
-padding: 4px 4px 12px 4px;
+padding: 8px 8px 12px 8px;
 margin: ${setRem(4)};
 `;
 
-const containerWrapper = `  
+const containerWrapper = `
+--itemBg: #eee;  
 padding: 4px ${itemSpacing};
 box-sizing: border-box;
 `;
 
 const itemWrapper = `
 padding: 8px 0;
-boxsizing: border-box;
+box-sizing: border-box;
 `;
 
 const doGridStyling = (useGrid, length) => {
@@ -31,12 +33,12 @@ const doGridStyling = (useGrid, length) => {
 
 export const StyledAppWrapper = styled.div`
   padding: 8px;
-  box-sizing: border-box;
   display: block;
 `;
 
 export const StyledHeaderWrapper = styled.div`
-  padding: 8px 0px;
+  padding: 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 `;
 
 export const StyledColumnLabelsWrapper = styled.div`
@@ -52,8 +54,8 @@ export const StyledColumnLabelWrapper = styled.div`
 export const StyledColumnLabelCell = styled.div`
   ${cellSpacing}
   font-weight: bold;
-  text-align: center;
-  display: inline-flex;
+  display: flex;
+  align-items: center;
   ${itemBg}
 `;
 

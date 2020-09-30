@@ -76,5 +76,9 @@ export const setTransition = ({
   time = "0.3s",
   timing = "ease-in-out",
 } = {}) => {
-  return `transition:${property} ${time} ${timing}`;
+  return `transition: ${property} ${time} ${timing}`;
+};
+
+export const setHoverText = () => {
+  return `#666`;
 };
