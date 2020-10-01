@@ -19,6 +19,7 @@ export function getComicBookColumns(commonFunctions) {
       title: "Publisher",
       className: "col-publisher",
       dataKey: "publisher",
+      sortArrows: true,
       render: (text, record) => <div>{text}</div>,
     },
     {
@@ -39,14 +40,6 @@ export function getComicBookColumns(commonFunctions) {
         sortLastNameFirst(dataArray, direction),
       render: (text, record) => <div>{text}</div>,
     },
-    // {
-    //   position: 220,
-    //   id: "cover_artist",
-    //   title: "Cover",
-    //   className: "col-cover_artist",
-    //   dataKey: "cover_artist",
-    //   render: (text, record) => <div>{text}</div>,
-    // },
     {
       position: 300,
       id: "release_date",
@@ -55,14 +48,6 @@ export function getComicBookColumns(commonFunctions) {
       dataKey: "release_date",
       render: (text, record) => <div>{text}</div>,
     },
-    // {
-    //   position: 400,
-    //   id: "creators",
-    //   title: "Creators",
-    //   className: "col-creators",
-    //   dataKey: "creators",
-    //   render: (text, record) => <div>{text}</div>,
-    // },
   ];
 }
 /* eslint-enable react/no-multi-comp */
