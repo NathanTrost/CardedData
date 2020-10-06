@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { setRem, setShadow } from "./utils";
 
 const itemSpacing = "20px";
