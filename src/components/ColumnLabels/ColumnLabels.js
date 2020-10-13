@@ -23,6 +23,14 @@ const ColumnLabels = ({ columns, onFilter }) => {
   );
 };
 
-ColumnLabels.propTypes = ColumnLabelsProps;
+// ColumnLabels.propTypes = ColumnLabelsProps;
+
+import PropTypes from "prop-types";
+ColumnLabels.propTypes = {
+  /** Child of component. */
+  columns: PropTypes.node,
+  /** Fire onFilter function. */
+  onFilter: PropTypes.func,
+};
 
 export default ColumnLabels;
